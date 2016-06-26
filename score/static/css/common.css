@@ -1,0 +1,96 @@
+/* div {
+    outline-color: red;
+    outline-width: 1px;
+    outline-style: solid;
+}
+ */
+/* line 3, scss/common.scss */
+.inactive {
+  display: none;
+}
+
+/* line 7, scss/common.scss */
+.row {
+  padding: 10px;
+}
+
+/* line 11, scss/common.scss */
+a, .plink {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}
+
+/* line 20, scss/common.scss */
+.plink {
+  cursor: pointer;
+}
+
+/* line 25, scss/common.scss */
+.error {
+  color: red;
+  outline-color: red;
+  outline-style: solid;
+  outline-width: 2px;
+}
+
+/* line 32, scss/common.scss */
+.debug {
+  outline-width: 1px;
+  outline-color: red;
+  outline-style: solid;
+}
+
+/* line 39, scss/common.scss */
+.waiting {
+  cursor: pointer;
+  color: #c6c6c6;
+}
+/* line 42, scss/common.scss */
+.waiting:hover {
+  color: #27c257;
+}
+
+/* line 47, scss/common.scss */
+.label-as-badge {
+  border-radius: 1em;
+}
+
+/* line 51, scss/common.scss */
+.label-brand {
+  background-color: #0088cc;
+  color: white;
+}
+
+/* .p-mnt {
+    text-align: center;
+} */
+/* line 60, scss/common.scss */
+.hint {
+  font-size: 120%;
+  color: #888888;
+  padding: .5em;
+}
+
+/* line 66, scss/common.scss */
+.hint-icon {
+  font-size: 200%;
+}
+
+/* line 70, scss/common.scss */
+.nano-timeline img {
+  max-width: 12px;
+  margin-left: -1px;
+}
+
+/* line 77, scss/common.scss */
+.center-label {
+  font-size: 300%;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 100px;
+}
+
+/* line 82, scss/common.scss */
+.center-sub-label {
+  text-align: center;
+}

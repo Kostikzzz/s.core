@@ -1,0 +1,89 @@
+@import "config";
+
+.inactive {
+    display: none;
+}
+
+.row {
+    padding: 10px;
+}
+
+%link-style{
+    text-decoration-line: underline;
+    text-decoration-style: dotted; 
+}
+
+a {
+    @extend %link-style;
+}
+
+.plink {
+    @extend %link-style;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    outline-color: red;
+    outline-style: solid;
+    outline-width: 2px;
+}
+
+.debug {
+    outline-width: 1px;
+    outline-color: red;
+    outline-style: solid;
+}
+
+
+.waiting {
+    cursor: pointer;
+    color:#c6c6c6;
+    &:hover{
+        color:#27c257;
+    }
+}
+
+.label-as-badge{
+    border-radius: 1em;
+}
+
+.label-brand {
+    background-color: $k-blue;
+    color: white;
+}
+
+/* .p-mnt {
+    text-align: center;
+} */
+
+.hint{
+    font-size: 120%;
+    color: #888888; 
+    padding: .5em;
+}
+
+.hint-icon{
+    font-size: 200%;
+}
+
+.nano-timeline img {
+    max-width: 12px;
+    margin-left: -1px;
+}
+
+
+//For 404 and maintenance pages
+.center-label{
+    font-size: 300%; text-align: center; font-weight: 600;
+    margin-top: 100px;
+}
+
+.center-sub-label {
+    text-align: center;
+}
+
+
+
+
+

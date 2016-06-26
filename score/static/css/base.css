@@ -1,0 +1,121 @@
+/* div {
+    outline-color: red;
+    outline-width: 1px;
+    outline-style: solid;
+}
+ */
+/* line 4, scss/base.scss */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* line 11, scss/base.scss */
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #878787;
+  /* Set the fixed height of the footer here */
+  height: 3em;
+  text-align: center;
+}
+/* line 19, scss/base.scss */
+#footer p {
+  font-size: 80%;
+}
+
+/* line 24, scss/base.scss */
+body {
+  color: #323232;
+  background-color: white;
+  font-family: 'Arimo', sans-serif;
+  font-size: 15px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+/* ================================= NAVBAR =============================*/
+/* line 35, scss/base.scss */
+#nb-container {
+  background-color: #0088cc;
+  width: 100%;
+}
+
+/* line 40, scss/base.scss */
+#navbar {
+  text-align: center;
+  color: white;
+  padding-bottom: 10px;
+}
+
+/* line 46, scss/base.scss */
+#navbar a {
+  color: white;
+}
+
+/* line 51, scss/base.scss */
+.nb-cf {
+  display: none;
+}
+
+/* line 55, scss/base.scss */
+#logo {
+  max-width: 270px;
+  margin-top: -7px;
+}
+
+/* line 60, scss/base.scss */
+#nb-logo-block {
+  width: 20%;
+  float: left;
+  margin-top: 5px;
+}
+
+/* line 67, scss/base.scss */
+#nb-login-status {
+  float: right;
+  text-align: right;
+  margin-top: 20px;
+  width: 20%;
+}
+
+@media screen and (max-width: 996px) {
+  /* line 79, scss/base.scss */
+  #nb-login-status {
+    text-align: center;
+    margin-top: 8px;
+    min-width: 240px;
+    width: 240px;
+    float: none;
+    margin: auto;
+  }
+
+  /* line 89, scss/base.scss */
+  #nb-slogan {
+    float: none;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 15px;
+  }
+
+  /* line 96, scss/base.scss */
+  .nb-cf {
+    display: block;
+  }
+
+  /* line 100, scss/base.scss */
+  #nb-base-menu {
+    float: none;
+    margin: auto;
+  }
+
+  /* line 105, scss/base.scss */
+  #nb-logo-block {
+    width: 100%;
+    margin: auto;
+    float: none;
+    margin-top: 15px;
+  }
+}
+/* ================================= END NAVBAR =============================*/
