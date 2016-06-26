@@ -4,6 +4,7 @@ from flask.ext.login import login_user, login_required, logout_user, current_use
 from . .db import db
 from . .config import GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET
 from datetime import datetime
+import json
 
 from . import social, oauth
 
@@ -199,7 +200,7 @@ def avatar_upload():
         file.save(file_path)
         file = open(file_path, "rb")
         img = Image.open(file)
-        max_size=100
+        max_size=160
         if (img.size[0]>=img.size[1]):
             img.thumbnail([max_size*100,max_size])
             off = int((img.size[0]-max_size)/2)
@@ -219,9 +220,11 @@ def avatar_upload():
         if old_ava_name:
             os.remove(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER,old_ava_name))
 
+        return json.dumps({"url": url_for('social.show_avatar', f=ava_name)})
 
-    u=current_user
-    return render_template('profile.html', u=u, has_size_error = has_size_error)
+
+    #u=current_user
+    #return render_template('profile.html', u=u, has_size_error = has_size_error)
     
 
 @social.route('/show-avatar/<f>', methods=['GET'])

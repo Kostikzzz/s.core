@@ -1,9 +1,3 @@
-/* div {
-    outline-color: red;
-    outline-width: 1px;
-    outline-style: solid;
-}
- */
 /* line 4, scss/base.scss */
 html {
   position: relative;
@@ -15,25 +9,37 @@ html {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #878787;
+  color: #efefef;
+  background-color: #585858;
   /* Set the fixed height of the footer here */
   height: 3em;
   text-align: center;
 }
-/* line 19, scss/base.scss */
+/* line 20, scss/base.scss */
 #footer p {
   font-size: 80%;
 }
 
-/* line 24, scss/base.scss */
+/* line 25, scss/base.scss */
 body {
-  color: #323232;
-  background-color: white;
-  font-family: 'Arimo', sans-serif;
+  color: #585858;
+  background-color: #f8f8f8;
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Arimo', sans-serif; */
   font-size: 15px;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
 /* ================================= NAVBAR =============================*/
+/* line 37, scss/base.scss */
+#navbar {
+  background-color: white;
+  color: #585858;
+  border-width: 0 0 2px 0;
+  border-color: #efefef;
+  border-style: solid;
+  height: 60px;
+}
+
 /* ================================= END NAVBAR =============================*/

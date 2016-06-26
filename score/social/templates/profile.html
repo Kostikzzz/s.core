@@ -5,46 +5,67 @@
 {% block styles %}
 {{ super() }}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/ui.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('social.static', filename='css/profile.css') }}">
 {% endblock %}
 
 {% block page_content %}
 <div class="container">
+
+
     <div class="row" id ="main-screen">
-        <div class="col-lg-2">
+        <div class="col-lg-3">
+
+        <section id="avatar__dropzone" class="dropzone">
+            {% if u.image %}
+                    <img class="avatar-big" id="avatar__image" src="{{url_for('social.show_avatar', f=u.image)}}"/>
+                {% endif %}
+          <div id="dnd-cta">Перетащите новое фото сюда</div>
+          <div id="or">-или-</div>
+          <div class="browser">
+            <label>
+              <span>Выберите файл</span>
+              <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
+            </label>
+          </div>
+        </section>
+
 
         </div>
-        <div class="col-lg-8">
-            {% if u.image %}
-                <img src="{{url_for('social.show_avatar', f=u.image)}}"/>
-            {% endif %}
-            <h2>{{u.nickname}}</h2>
+
+        <div class="col-lg-5">
+            <section id="userinfo">
+                <h1 id="nickname__title">{{u.nickname}}</h1>
+                <div class="divider"></div>
+
+                <label class="form-label" for="nickname__edit-input">Никнейм:</label>
+                <div class="form-inline">
+                  <div id ="nickname__group" class="form-group" >
+                    {% if u.nickname %}{% set nick=u.nickname %}{% endif %}
+                    <input type="text" class="form-control" id="nickname__edit-input" value="{{nick}}" placeholder="Add nickname">
+                  </div>
+                  <button id="nickname__save-button" class="btn btn-default">Сохранить</button>
+                </div>
+
+                <label class="form-label" for="nickname__edit-input">E-mail:</label>
+                <div class="form-inline">
+                  <div id ="email__group" class="form-group" >
+                    <input type="text" class="form-control" id="email__edit-input" value="{{u.email}}" placeholder="Add nickname">
+                  </div>
+                  <button id="email__save-button" class="btn btn-default">Сохранить</button>
+                </div>
+
+                <div id="nickname__status"></div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>Авторизация</h2>
             {% if u.google_id %}
                 Вы вошли с помощью Google
             {% endif %}
-            <h3>Ваш ник на сайте:</h3>
-            <div class="form-inline">
-              <div class="form-group" id ="nickname-group">
-                {% if u.nickname %}{% set nick=u.nickname %}{% endif %}
-                <input type="text" class="form-control" id="add-nickname-input" value="{{nick}}" placeholder="Add nickname">
-              </div>
-              <button id="add-nickname-button" class="btn btn-default">Сохранить</button>
-            </div>
-            <div id="nickname-status"></div>
-
         </div>
-
-        <div class="col-lg-2"></div>
     </div>
 
-    
-    <h1>Загрузить аватар</h1>
-    {% if has_size_error %}
-        <div> Слишком большой файл! </div>
-    {% endif %}
-    <form action="{{url_for('social.avatar_upload')}}" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value="Загрузить">
-    </form>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -66,4 +87,5 @@
     {{ super() }}
     <script src ="{{ url_for('static', filename="js/common.js") }}" type="text/javascript"></script>
     <script src ="{{ url_for('static', filename="js/profile.js") }}" type="text/javascript"></script>
+    <script src ="{{ url_for('static', filename="lib/dmuploader.min.js") }}" type="text/javascript"></script>
 {% endblock %}

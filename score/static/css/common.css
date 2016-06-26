@@ -1,31 +1,32 @@
 /* div {
-    outline-color: red;
     outline-width: 1px;
     outline-style: solid;
+    outline-color: red;
 }
  */
-/* line 3, scss/common.scss */
+/* line 11, scss/common.scss */
 .inactive {
   display: none;
 }
 
-/* line 7, scss/common.scss */
+/* line 15, scss/common.scss */
 .row {
   padding: 10px;
+  outline-color: blue;
 }
 
-/* line 11, scss/common.scss */
+/* line 20, scss/common.scss */
 a, .plink {
   text-decoration-line: underline;
   text-decoration-style: dotted;
 }
 
-/* line 20, scss/common.scss */
+/* line 29, scss/common.scss */
 .plink {
   cursor: pointer;
 }
 
-/* line 25, scss/common.scss */
+/* line 34, scss/common.scss */
 .error {
   color: red;
   outline-color: red;
@@ -33,53 +34,53 @@ a, .plink {
   outline-width: 2px;
 }
 
-/* line 32, scss/common.scss */
+/* line 41, scss/common.scss */
 .debug {
   outline-width: 1px;
   outline-color: red;
   outline-style: solid;
 }
 
-/* line 39, scss/common.scss */
+/* line 48, scss/common.scss */
 .waiting {
   cursor: pointer;
   color: #c6c6c6;
 }
-/* line 42, scss/common.scss */
+/* line 51, scss/common.scss */
 .waiting:hover {
   color: #27c257;
 }
 
-/* line 47, scss/common.scss */
+/* line 56, scss/common.scss */
 .label-as-badge {
   border-radius: 1em;
 }
 
-/* line 51, scss/common.scss */
+/* line 60, scss/common.scss */
 .label-brand {
   background-color: #0088cc;
   color: white;
 }
 
-/* line 57, scss/common.scss */
+/* line 66, scss/common.scss */
 .hint {
   font-size: 120%;
   color: #878787;
   padding: .5em;
 }
 
-/* line 63, scss/common.scss */
+/* line 72, scss/common.scss */
 .hint-icon {
   font-size: 200%;
 }
 
-/* line 67, scss/common.scss */
+/* line 76, scss/common.scss */
 .nano-timeline img {
   max-width: 12px;
   margin-left: -1px;
 }
 
-/* line 74, scss/common.scss */
+/* line 83, scss/common.scss */
 .center-label {
   font-size: 300%;
   text-align: center;
@@ -87,7 +88,42 @@ a, .plink {
   margin-top: 100px;
 }
 
-/* line 79, scss/common.scss */
+/* line 88, scss/common.scss */
 .center-sub-label {
   text-align: center;
+}
+
+/* line 92, scss/common.scss */
+section {
+  border-width: 1px;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #efefef;
+  padding: 40px 40px;
+  background-color: white;
+}
+
+/* line 101, scss/common.scss */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #efefef;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* line 109, scss/common.scss */
+.form-inline {
+  margin-bottom: 15px;
+}
+
+/* line 113, scss/common.scss */
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* line 119, scss/common.scss */
+.avatar-big {
+  border-radius: 6px;
 }

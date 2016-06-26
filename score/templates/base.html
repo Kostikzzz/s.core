@@ -16,8 +16,8 @@
 
 {% block styles %}
 {{ super() }}
-    <link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-
+    <!-- <link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/common.css') }}">
@@ -26,27 +26,29 @@
 
 {% block navbar %}
 
-    <div class="container" id="navbar">
-        <div class="row">
-            <div class="col-lg-3" id="navbar__logo">S.CORE</div>
-            <div class="col-lg-6" id="navbar__middle"></div>
-            <div class="col-lg-3" id="navbar__user">
-                {% if current_user.is_authenticated %}
-                    <!-- Вы вошли как  -->
-                    {% if current_user.worker==1 or current_user.is_admin() %}
-                        <a class="label label-as-badge" href="{{url_for('admin.admin_main')}}" style="color:red"><span class="glyphicon glyphicon-user"></span></a>
-                    {% else %}
-                    <span class="glyphicon glyphicon-user"></span>
-                    {% endif %}
+    <div id="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3" id="navbar__logo">S.CORE</div>
+                <div class="col-lg-6" id="navbar__middle"></div>
+                <div class="col-lg-3" id="navbar__user">
+                    {% if current_user.is_authenticated %}
+                        <!-- Вы вошли как  -->
+                        {% if current_user.worker==1 or current_user.is_admin() %}
+                            <a class="label label-as-badge" href="{{url_for('admin.admin_main')}}" style="color:red"><span class="glyphicon glyphicon-user"></span></a>
+                        {% else %}
+                        <span class="glyphicon glyphicon-user"></span>
+                        {% endif %}
+                            &nbsp;
+                        <a href="{{url_for('social.profile')}}">
+                            <strong><span id="nickname">{{current_user.nickname }}</span></strong>
+                        </a>
                         &nbsp;
-                    <a href="{{url_for('social.profile')}}">
-                        <strong><span id="nickname">{{current_user.nickname }}</span></strong>
-                    </a>
-                    &nbsp;
-                    <a href="{{url_for('social.logout')}}"><i class="fa fa-sign-out" title="Выйти"></i></a>
-                {% else %}
-                    Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
-                {% endif %}
+                        <a href="{{url_for('social.logout')}}"><i class="fa fa-sign-out" title="Выйти"></i></a>
+                    {% else %}
+                        Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

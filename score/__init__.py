@@ -47,7 +47,7 @@ bootstrap = Bootstrap(app)
 
 
 lm = LoginManager(app)
-lm.login_view = 'auth.login'
+lm.login_view = 'social.login'
 
 @app.context_processor
 def set_global_mode():
