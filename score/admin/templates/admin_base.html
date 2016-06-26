@@ -13,7 +13,7 @@
         {{config['LANG']|upper}}
         {{url_for('root', _external=True)}}
         &nbsp;
-        USER: {{current_user.nickname}} - <a href="{{url_for('auth.logout')}}"> LOG OUT </a>
+        USER: {{current_user.nickname}} - <a href="{{url_for('social.logout')}}"> LOG OUT </a>
     {% endblock %}
 </div>
 

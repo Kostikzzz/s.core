@@ -195,7 +195,7 @@ def avatar_upload():
 
     if file and allowed_file(file.filename) and not has_size_error:
         filename = secure_filename(file.filename)
-        file_path = os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, filename)
+        file_path = os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, 'temp',filename)
         file.save(file_path)
         file = open(file_path, "rb")
         img = Image.open(file)

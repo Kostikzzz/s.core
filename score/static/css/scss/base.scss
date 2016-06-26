@@ -32,82 +32,12 @@ body {
 
 /* ================================= NAVBAR =============================*/
 
-#nb-container{
-    background-color: $k-blue;
-    width:100%;
-}
 
-#navbar {
-    text-align: center;
-    color: white;
-    padding-bottom: 10px;
-}
-
-#navbar a {
-    color:white;
-}
-
-
-.nb-cf{
-    display: none;
-}
-
-#logo {
-    max-width: 270px;
-    margin-top: -7px;
-}
-
-#nb-logo-block{
-        width:20%;
-        float: left;
-        margin-top: 5px;
-}
-
-
-#nb-login-status{
-    float: right;
-    text-align: right;
-    margin-top: 20px;
-    width:20%;
-
-}
 
 
 
 
 @media screen and (max-width: 996px){
-    #nb-login-status{
-        text-align: center;
-
-        margin-top: 8px;
-        min-width: 240px;
-        width:240px;
-        float: none;
-        margin:auto;
-    }
-
-    #nb-slogan{
-        float: none;
-        width: 100%;
-        padding-top: 0;
-        padding-bottom: 15px;
-    }
-
-    .nb-cf{
-        display: block;
-    }
-
-    #nb-base-menu{
-        float: none;
-        margin: auto;
-    }
-
-    #nb-logo-block{
-        width:100%;
-        margin: auto;
-        float: none;
-        margin-top: 15px;
-    }
 
 
 }

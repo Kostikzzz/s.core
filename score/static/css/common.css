@@ -61,28 +61,25 @@ a, .plink {
   color: white;
 }
 
-/* .p-mnt {
-    text-align: center;
-} */
-/* line 60, scss/common.scss */
+/* line 57, scss/common.scss */
 .hint {
   font-size: 120%;
-  color: #888888;
+  color: #878787;
   padding: .5em;
 }
 
-/* line 66, scss/common.scss */
+/* line 63, scss/common.scss */
 .hint-icon {
   font-size: 200%;
 }
 
-/* line 70, scss/common.scss */
+/* line 67, scss/common.scss */
 .nano-timeline img {
   max-width: 12px;
   margin-left: -1px;
 }
 
-/* line 77, scss/common.scss */
+/* line 74, scss/common.scss */
 .center-label {
   font-size: 300%;
   text-align: center;
@@ -90,7 +87,7 @@ a, .plink {
   margin-top: 100px;
 }
 
-/* line 82, scss/common.scss */
+/* line 79, scss/common.scss */
 .center-sub-label {
   text-align: center;
 }

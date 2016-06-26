@@ -1,7 +1,5 @@
-r2f/config.py
-r2f/external.py
-r2f/static/photos
-r2f/_import
+score/config.py
+score/static/photos
 __pycache__
-r2f/__pycache__
+score/__pycache__
 *.pyc

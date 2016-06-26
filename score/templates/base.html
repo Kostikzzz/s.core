@@ -26,20 +26,11 @@
 
 {% block navbar %}
 
-    <div id="nb-container">
-        <div id = "navbar" class="container">
-
-            
-            <div id="nb-logo-block">
-                <a href="{{ url_for('root') }}">
-                    <img id="logo" src="{{url_for('static', filename='images/logo.png')}}" />
-                </a>
-            </div>
-
-
-            
-
-            <div id="nb-login-status">
+    <div class="container" id="navbar">
+        <div class="row">
+            <div class="col-lg-3" id="navbar__logo">S.CORE</div>
+            <div class="col-lg-6" id="navbar__middle"></div>
+            <div class="col-lg-3" id="navbar__user">
                 {% if current_user.is_authenticated %}
                     <!-- Вы вошли как  -->
                     {% if current_user.worker==1 or current_user.is_admin() %}
@@ -53,13 +44,10 @@
                     </a>
                     &nbsp;
                     <a href="{{url_for('social.logout')}}"><i class="fa fa-sign-out" title="Выйти"></i></a>
-
                 {% else %}
                     Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
                 {% endif %}
             </div>
-
-            <div class=" nb-cf clearfix"></div>
         </div>
     </div>
 

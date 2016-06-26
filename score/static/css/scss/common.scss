@@ -38,7 +38,7 @@ a {
 
 .waiting {
     cursor: pointer;
-    color:#c6c6c6;
+    color:$gray4;
     &:hover{
         color:#27c257;
     }
@@ -53,13 +53,10 @@ a {
     color: white;
 }
 
-/* .p-mnt {
-    text-align: center;
-} */
 
 .hint{
     font-size: 120%;
-    color: #888888; 
+    color: $gray3; 
     padding: .5em;
 }
 
