@@ -35,6 +35,7 @@ app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
 app.config['BOOTSTRAP_SERVE_LOCAL']=True
 app.config['CACHE_TYPE']='simple'
 
+
 cache.init_app(app)
 
 toolbar = DebugToolbarExtension(app)
@@ -61,9 +62,9 @@ def load_user(id):
     else:
         return None
 
-@csrf.error_handler
-def csrf_error(reason):
-    return render_template('error.html', reason=reason)
+# @csrf.error_handler
+# def csrf_error(reason):
+#     return render_template('error.html', reason=reason)
 
 
 @app.before_request
@@ -103,6 +104,10 @@ def page_not_found(e):
 @app.errorhandler(413)
 def error413(e):
     return "Your error page for 413 status code", 413
+
+@app.route('/csrf-test', methods=['POST'])
+def csrf_test():
+    return ('okk')
 
 
 

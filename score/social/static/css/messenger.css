@@ -3,7 +3,7 @@ ul {
   padding: 0;
 }
 
-/* line 7, scss/messenger.scss */
+/* line 8, scss/messenger.scss */
 li.contact-list__item {
   list-style: none;
   display: block;
@@ -13,7 +13,7 @@ li.contact-list__item {
   border-radius: 4px;
   padding: 5px;
 }
-/* line 15, scss/messenger.scss */
+/* line 16, scss/messenger.scss */
 li.contact-list__item:hover {
   background-color: #0088cc;
   color: white;
@@ -21,17 +21,23 @@ li.contact-list__item:hover {
 }
 
 /* line 22, scss/messenger.scss */
+li.contact-list__item--selected {
+  background-color: #ffc501;
+  color: white;
+}
+
+/* line 27, scss/messenger.scss */
 .msg__bubble {
   border-radius: 6px;
   padding: 10px;
 }
 
-/* line 28, scss/messenger.scss */
+/* line 33, scss/messenger.scss */
 .msg__to-me .msg__bubble {
   background-color: #ffeaa5;
 }
 
-/* line 34, scss/messenger.scss */
+/* line 39, scss/messenger.scss */
 .msg__from-me .msg__bubble {
   background-color: #c8efb1;
 }

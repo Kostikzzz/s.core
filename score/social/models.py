@@ -18,14 +18,23 @@ class PrivateMessage(db.Model):
     user_from = db.Column(db.ForeignKey('users.id'))
     user_to = db.Column(db.ForeignKey('users.id'))
     timestamp = db.Column(db.DateTime)
-    # sender = db.relationship('User',foreign_keys=[user_from])
-    # recipient = db.relationship('User',foreign_keys=[user_to])
 
     def __init__(self, user_to, text):
         self.timestamp = datetime.utcnow()
         self.text = text
         self.user_to = user_to
 
+
+
+class UsersRelationship(db.Model):
+
+    __tablename__ = 'users_relationships'
+    id = db.Column(db.Integer, primary_key=True)
+    user1 = db.Column(db.ForeignKey('users.id'))
+    user2 = db.Column(db.ForeignKey('users.id'))
+    are_friends = db.Column(db.Boolean, default=False)
+    follows = db.Column(db.Boolean, default=False)
+    can_send_pm = db.Column(db.Boolean, default=True)
 
 class User (UserMixin, db.Model):
     __tablename__ = 'users'
@@ -45,6 +54,7 @@ class User (UserMixin, db.Model):
     worker = db.Column(db.Boolean, default = False)
 
     private_messages = db.relationship('PrivateMessage', backref='sender', lazy='dynamic', foreign_keys='PrivateMessage.user_from')
+    users_relationships = db.relationship('UsersRelationship', backref='user', lazy='dynamic', foreign_keys='UsersRelationship.user1')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

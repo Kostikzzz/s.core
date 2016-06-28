@@ -4,6 +4,7 @@
 ul{
     padding: 0;
 }
+
 li.contact-list__item{
     list-style: none;
     display:block;
@@ -17,6 +18,10 @@ li.contact-list__item{
         color:white;
         cursor: pointer;
     }
+}
+li.contact-list__item--selected{
+    background-color: $c-sec;
+    color:white;
 }
 
 .msg__bubble{

@@ -1,5 +1,5 @@
 from flask import session, request, url_for, redirect, render_template, send_from_directory, flash
-from .models import User
+from .models import User, PrivateMessage
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from . .db import db
 from . .config import GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET
@@ -12,6 +12,10 @@ from . .path import ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER
 
 from PIL import Image
 from . .toolbox import get_hash
+
+from sqlalchemy.sql import or_, and_
+
+
 
 
 
@@ -221,10 +225,6 @@ def avatar_upload():
             os.remove(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER,old_ava_name))
 
         return json.dumps({"url": url_for('social.show_avatar', f=ava_name)})
-
-
-    #u=current_user
-    #return render_template('profile.html', u=u, has_size_error = has_size_error)
     
 
 @social.route('/show-avatar/<f>', methods=['GET'])
@@ -237,3 +237,28 @@ def show_avatar(f):
 def messenger():
     u=current_user
     return render_template('messenger.html', u=u)
+
+@login_required
+@social.route('/post-messenger', methods=['POST'])
+def post_messenger():
+
+    query=request.json
+
+    if query['cmd']=='sendMessage':
+        txt = query['text']
+        current_user.send_private_message(query['uid'], txt)
+        return json.dumps({'status':'ok'})
+
+    elif query['cmd']=='getMessages':
+        pm = PrivateMessage.query.filter( or_(and_(PrivateMessage.user_from==current_user.id, PrivateMessage.user_to==query['uid']), and_(PrivateMessage.user_to==current_user.id, PrivateMessage.user_from==query['uid']) ) )
+        msgs=[]
+        for m in pm:
+            msgs.append({"text":m.text, "sender":m.user_from})
+        return json.dumps({'status':'ok', 'messages':msgs})
+
+
+
+
+
+
+
