@@ -1,87 +1,111 @@
-#nickname__title{
-    font-size: 300%;
-    margin-top:0;
-    line-height: .8em;
+/* line 3, scss/profile.scss */
+#nickname__title {
+  font-size: 300%;
+  margin-top: 0;
+  line-height: .8em;
 }
 
-.dropzone{
-/*    width:150px;
-    height:150px;*/
-/*    background-color: red;*/
+/* line 10, scss/profile.scss */
+.dropzone {
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  font-size: 18px;
+  cursor: default;
+  line-height: 0.8em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
-/*
- * Widget
- */
-.dropzone
-{
-    /*border: 2px dotted #A5A5C7;*/
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
-    margin-bottom: 10px;
-    font-size: 18px;
-    cursor: default;
-    line-height: 0.8em;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.dropzone-active {
-    border-color: #0B85A1;
-}
-
+/* line 26, scss/profile.scss */
 .dropzone div#dnd-cta {
-    padding-top: 20px;
+  padding-top: 20px;
 }
+/* line 30, scss/profile.scss */
 .dropzone div#or {
-    font-size:14px;
-    font-weight: bold;
-    color: #C0C0C0;
-    padding-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #C0C0C0;
+  padding-top: 10px;
 }
-
-div.browser label {
-    background-color: #5a7bc2;
-    padding: 5px 15px;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    display: block;
-    width: 90%;
-    margin: 15px auto 0px auto;
-
-    box-shadow: 2px 2px 2px #888888;
-}
-
+/* line 39, scss/profile.scss */
 .dropzone div.browser span {
-    cursor: pointer;
+  cursor: pointer;
 }
-
-
-.dropzone div.browser input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    border: solid transparent;
-    border-width: 0 0 100px 200px;
-    opacity: .0;
-    filter: alpha(opacity= 0);
-    -o-transform: translate(250px,-50px) scale(1);
-    -moz-transform: translate(-300px,0) scale(4);
-    direction: ltr;
-    cursor: pointer;
+/* line 43, scss/profile.scss */
+.dropzone div.browser label {
+  background-color: #5a7bc2;
+  padding: 5px 15px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 90%;
+  margin: 15px auto 0px auto;
+  box-shadow: 2px 2px 2px #888888;
 }
-
+/* line 57, scss/profile.scss */
 .dropzone div.browser label:hover {
-    background-color: #427fed;
+  background-color: #427fed;
+}
+/* line 62, scss/profile.scss */
+.dropzone div.browser input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: solid transparent;
+  border-width: 0 0 100px 200px;
+  opacity: .0;
+  filter: alpha(opacity=0);
+  -o-transform: translate(250px, -50px) scale(1);
+  -moz-transform: translate(-300px, 0) scale(4);
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* line 82, scss/profile.scss */
+ul {
+  padding: 0;
+}
+
+/* line 85, scss/profile.scss */
+li.contact-list__item {
+  list-style: none;
+  display: block;
+  width: 100%;
+  background-color: #f8f8f8;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  padding: 5px;
+}
+/* line 93, scss/profile.scss */
+li.contact-list__item:hover {
+  background-color: #0088cc;
+  color: white;
+  cursor: pointer;
+}
+
+/* line 100, scss/profile.scss */
+.msg__bubble {
+  border-radius: 6px;
+  padding: 10px;
+}
+
+/* line 106, scss/profile.scss */
+.msg__to-me .msg__bubble {
+  background-color: #ffeaa5;
+}
+
+/* line 112, scss/profile.scss */
+.msg__from-me .msg__bubble {
+  background-color: #c8efb1;
 }

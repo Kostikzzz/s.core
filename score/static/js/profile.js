@@ -52,6 +52,7 @@ $(document).ready(function(){
 			$('#avatar__image').hide(300);
 			setTimeout(function(){
 				$('#avatar__image').attr('src', data.url);
+				$('#navbar__avatar').attr('src', data.url);
 				$('#avatar__image').show(300);
 			},350);
 			

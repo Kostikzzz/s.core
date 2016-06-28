@@ -2,4 +2,5 @@ score/config.py
 score/static/photos
 __pycache__
 score/__pycache__
+score/upload
 *.pyc
