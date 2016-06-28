@@ -4,10 +4,27 @@ from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . .config import ADMIN_EMAILS
+from datetime import datetime
 
 # import os
 # from . .path import ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER
 from . .logger import StrangersLog
+
+
+class PrivateMessage(db.Model):
+    __tablename__ = "private_messages"
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text)
+    user_from = db.Column(db.ForeignKey('users.id'))
+    user_to = db.Column(db.ForeignKey('users.id'))
+    timestamp = db.Column(db.DateTime)
+    # sender = db.relationship('User',foreign_keys=[user_from])
+    # recipient = db.relationship('User',foreign_keys=[user_to])
+
+    def __init__(self, user_to, text):
+        self.timestamp = datetime.utcnow()
+        self.text = text
+        self.user_to = user_to
 
 
 class User (UserMixin, db.Model):
@@ -26,6 +43,8 @@ class User (UserMixin, db.Model):
     image =db.Column(db.String(250), unique=True)
     last_login = db.Column(db.DateTime)
     worker = db.Column(db.Boolean, default = False)
+
+    private_messages = db.relationship('PrivateMessage', backref='sender', lazy='dynamic', foreign_keys='PrivateMessage.user_from')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -67,10 +86,17 @@ class User (UserMixin, db.Model):
     def is_admin(self):
         return (self.email in ADMIN_EMAILS)
 
-    # def get_avatar(self):
-    #     if self.image:
-    #         return os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, self.image)
-    #     else:
-    #         return os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, 'noname_avatar.png')
+    def send_private_message(self, user_to, text):
+        pm = PrivateMessage(user_to, text)
+        pm.user_from = self.id
+        db.session.add(pm)
+        db.session.commit()
+
+
+
+
+
+
+
 
 

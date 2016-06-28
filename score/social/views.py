@@ -230,3 +230,10 @@ def avatar_upload():
 @social.route('/show-avatar/<f>', methods=['GET'])
 def show_avatar(f):
     return send_from_directory(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER), f)
+
+
+@login_required
+@social.route('/private-messages', methods=['GET'])
+def messenger():
+    u=current_user
+    return render_template('messenger.html', u=u)

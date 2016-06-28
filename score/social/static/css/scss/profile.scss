@@ -78,38 +78,3 @@
 
 }
 
-
-ul{
-    padding: 0;
-}
-li.contact-list__item{
-    list-style: none;
-    display:block;
-    width:100%;
-    background-color: #f8f8f8;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    padding: 5px;
-    &:hover{
-        background-color: $c-prim;
-        color:white;
-        cursor: pointer;
-    }
-}
-
-.msg__bubble{
-    border-radius: 6px;
-    padding:10px;
-}
-
-.msg__to-me{
-    .msg__bubble{
-        background-color: $light-orange;
-    }
-}
-
-.msg__from-me{
-    .msg__bubble{
-        background-color: $light-green;
-    }
-}
