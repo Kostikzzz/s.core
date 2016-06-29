@@ -35,12 +35,6 @@
                     {% if current_user.is_authenticated %}
                         <!-- Вы вошли как  -->
                         <img id = "navbar__avatar" src="{{url_for('social.show_avatar', f=current_user.image)}}" class="img img-responsive avatar-small" />
-                        {% if current_user.worker==1 or current_user.is_admin() %}
-                            <a class="label label-as-badge" href="{{url_for('admin.admin_main')}}" style="color:red"><span class="glyphicon glyphicon-user"></span></a>
-                        {% else %}
-                        <span class="glyphicon glyphicon-user"></span>
-                        {% endif %}
-                            &nbsp;
                         <a href="{{url_for('social.profile')}}">
                             <strong><span id="nickname">{{current_user.nickname }}</span></strong>
                         </a>

@@ -53,7 +53,8 @@ class User (UserMixin, db.Model):
     last_login = db.Column(db.DateTime)
     worker = db.Column(db.Boolean, default = False)
 
-    private_messages = db.relationship('PrivateMessage', backref='sender', lazy='dynamic', foreign_keys='PrivateMessage.user_from')
+    private_messages_from = db.relationship('PrivateMessage', backref='sender', lazy='dynamic', foreign_keys='PrivateMessage.user_from')
+    private_messages_to = db.relationship('PrivateMessage', backref='recipient', lazy='dynamic', foreign_keys='PrivateMessage.user_to')
     users_relationships = db.relationship('UsersRelationship', backref='user', lazy='dynamic', foreign_keys='UsersRelationship.user1')
 
     def set_password(self, password):
@@ -101,6 +102,26 @@ class User (UserMixin, db.Model):
         pm.user_from = self.id
         db.session.add(pm)
         db.session.commit()
+
+    def get_contacted_users(self):
+        #REBUILD IT
+        contacted=[]
+        #sent
+        pms = PrivateMessage.query.filter(PrivateMessage.user_from==self.id)
+        for m in pms:
+            user_info={"name":m.recipient.nickname, "uid":m.recipient.id}
+            if user_info not in contacted:
+                contacted.append(user_info)
+        #received
+        pms = PrivateMessage.query.filter(PrivateMessage.user_to==self.id)
+        for m in pms:
+            user_info={"name":m.sender.nickname, "uid":m.sender.id}
+            if user_info not in contacted:
+                contacted.append(user_info)
+
+
+        return contacted
+
 
 
 

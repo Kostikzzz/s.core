@@ -33,8 +33,9 @@
                     <div class="col-lg-3">
                         <h3 class="col__header">Пользователи</h3>
                         <ul id="messenger__contact-list">
-                            <li class="contact-list__item" data-uid="28">Konstantin lapshov</li>
-                            <li class="contact-list__item" data-uid="33">Oompa Loompa</li>
+                            {% for c in u.get_contacted_users() %}
+                                <li class="contact-list__item" data-uid="{{c.uid}}">{{c.name}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="col-lg-9">
