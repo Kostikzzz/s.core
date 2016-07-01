@@ -224,12 +224,18 @@ def avatar_upload():
         if old_ava_name:
             os.remove(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER,old_ava_name))
 
-        return json.dumps({"url": url_for('social.show_avatar', f=ava_name)})
+        return json.dumps({"url": url_for('social.show_avatar', uid=current_user.id)})
     
 
-@social.route('/show-avatar/<f>', methods=['GET'])
-def show_avatar(f):
+@social.route('/show-avatar/<uid>', methods=['GET'])
+def show_avatar(uid):
+    u = User.query.get(uid)
+    f=u.image
+    if not f:
+        f = 'avatar_placeholder.png'
+
     return send_from_directory(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER), f)
+
 
 
 @login_required

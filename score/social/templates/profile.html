@@ -23,9 +23,7 @@
         <div class="col-lg-3">
 
         <section id="avatar__dropzone" class="dropzone">
-            {% if u.image %}
-                    <img class="avatar-big" id="avatar__image" src="{{url_for('social.show_avatar', f=u.image)}}"/>
-                {% endif %}
+                    <img class="avatar-big" id="avatar__image" src="{{url_for('social.show_avatar', uid=u.id)}}"/>
           <div id="dnd-cta">Перетащите новое фото сюда</div>
           <div id="or">-или-</div>
           <div class="browser">
