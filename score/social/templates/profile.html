@@ -13,8 +13,8 @@
 
     <div class="row" id="profile__menu">
         <div class="col-lg-12">
-            <a class="plink" href="#">Профиль</a>
-            <a class="plink" href="{{url_for('social.messenger')}}">Личные сообщения</a>
+            <a class="inline-menu__item inline-menu__item--selected" href="#">Профиль</a>
+            <a class="inline-menu__item" href="{{url_for('social.messenger')}}">Личные сообщения</a>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         <div class="col-lg-3">
 
         <section id="avatar__dropzone" class="dropzone">
-                    <img class="avatar-big" id="avatar__image" src="{{url_for('social.show_avatar', uid=u.id)}}"/>
+                    <img class="avatar-big" id="avatar__image" src="{{u.get_avatar()}}"/>
           <div id="dnd-cta">Перетащите новое фото сюда</div>
           <div id="or">-или-</div>
           <div class="browser">
@@ -54,7 +54,7 @@
                 <label class="form-label" for="nickname__edit-input">E-mail:</label>
                 <div class="form-inline">
                   <div id ="email__group" class="form-group" >
-                    <input type="text" class="form-control" id="email__edit-input" value="{{u.email}}" placeholder="Add nickname">
+                    <input type="text" class="form-control" id="email__edit-input" value="{{u.contact_email}}" placeholder="Add nickname">
                   </div>
                   <button id="email__save-button" class="btn btn-default">Сохранить</button>
                 </div>

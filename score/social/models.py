@@ -1,6 +1,6 @@
 from . .db import db
 from flask.ext.login import UserMixin
-from flask import session
+from flask import session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . .config import ADMIN_EMAILS
@@ -39,16 +39,16 @@ class UsersRelationship(db.Model):
 class User (UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50))
+    contact_email = db.Column(db.String(100))
     g_username = db.Column(db.String(50))
     f_username = db.Column(db.String(50))
-    t_username = db.Column(db.String(50))
+    vk_username = db.Column(db.String(50))
     nickname = db.Column(db.String(50))
     password_hash = db.Column(db.String(64))
     email = db.Column(db.String(100), unique=True)
     google_id =db.Column(db.String(255), unique=True)
     facebook_id =db.Column(db.String(255), unique=True)
-    twitter_id =db.Column(db.String(255), unique=True)
+    vk_id =db.Column(db.String(255), unique=True)
     image =db.Column(db.String(250), unique=True)
     last_login = db.Column(db.DateTime)
     worker = db.Column(db.Boolean, default = False)
@@ -75,7 +75,7 @@ class User (UserMixin, db.Model):
     def register_google_user(username, email, google_id):
         if username == '':
             username = email
-        user = User(g_username=username, nickname=username, email=email, google_id=google_id)
+        user = User(g_username=username, nickname=username, email=email, contact_email=email, google_id=google_id)
         db.session.add(user)
         db.session.commit()
         StrangersLog.write('google_sign_up')
@@ -85,7 +85,7 @@ class User (UserMixin, db.Model):
     def register_facebook_user(username, email, facebook_id):
         if username == '':
             username = email
-        user = User(f_username=username, nickname=username, email=email, facebook_id=facebook_id)
+        user = User(f_username=username, nickname=username, email=email, contact_email=email, facebook_id=facebook_id)
         db.session.add(user)
         db.session.commit()
         StrangersLog.write('fb_sign_up')
@@ -122,7 +122,11 @@ class User (UserMixin, db.Model):
 
         return contacted
 
-
+    def get_avatar(self):
+        image = self.image
+        if not image:
+            image='avatar_placeholder.png'
+        return (url_for('social.static', filename='images/avatars/'+image))
 
 
 

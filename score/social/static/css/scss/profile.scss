@@ -41,21 +41,24 @@
         }
 
         label {
-            background-color: #5a7bc2;
+            background-color: white;
             padding: 5px 15px;
-            color: white;
+            /* color: white; */
             font-size: 14px;
-            font-weight: bold;
+            /* font-weight: bold; */
             cursor: pointer;
-            border-radius: 2px;
+            border-radius: 3px;
+            border-style: solid;
+            border-color: $gray4;
+            border-width: 1px;
             position: relative;
             overflow: hidden;
             display: block;
             width: 90%;
             margin: 15px auto 0px auto;
-            box-shadow: 2px 2px 2px #888888;
+            /* box-shadow: 2px 2px 2px #888888; */
             &:hover{
-                background-color: #427fed;
+                background-color: $gray5;
             }
         }
 

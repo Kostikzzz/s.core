@@ -8,12 +8,13 @@ import json
 
 from . import social, oauth
 
-from . .path import ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER
+from . .path import ROOT_DIR, UPLOAD_DIR
 
 from PIL import Image
 from . .toolbox import get_hash
 
 from sqlalchemy.sql import or_, and_
+
 
 
 
@@ -200,7 +201,7 @@ def avatar_upload():
 
     if file and allowed_file(file.filename) and not has_size_error:
         filename = secure_filename(file.filename)
-        file_path = os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, 'temp',filename)
+        file_path = os.path.join(ROOT_DIR, UPLOAD_DIR,'avatars',filename)
         file.save(file_path)
         file = open(file_path, "rb")
         img = Image.open(file)
@@ -218,23 +219,14 @@ def avatar_upload():
         current_user.image=ava_name
         db.session.add(current_user)
         db.session.commit()
-        img2.save(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER, ava_name), "PNG")
+        img2.save(os.path.join(ROOT_DIR, 'social','static','images','avatars', ava_name), "PNG")
         file.close()
         os.remove(file_path)
         if old_ava_name:
-            os.remove(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER,old_ava_name))
+            os.remove(os.path.join(ROOT_DIR, 'social','static','images','avatars', old_ava_name))
 
-        return json.dumps({"url": url_for('social.show_avatar', uid=current_user.id)})
+        return json.dumps( {"url": current_user.get_avatar()} )
     
-
-@social.route('/show-avatar/<uid>', methods=['GET'])
-def show_avatar(uid):
-    u = User.query.get(uid)
-    f=u.image
-    if not f:
-        f = 'avatar_placeholder.png'
-
-    return send_from_directory(os.path.join(ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER), f)
 
 
 

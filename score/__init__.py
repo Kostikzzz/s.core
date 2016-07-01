@@ -11,7 +11,7 @@ from .cache import cache
 
 from .db import db
 
-from .config import DEBUG, SECRET_KEY, DBURI, MAINTENANCE
+from .config import DEBUG, SECRET_KEY, DBURI, MAINTENANCE, PROJECT_NAME
 
 from .social import social, oauth
 from .social.models import User
@@ -27,6 +27,7 @@ app.register_blueprint(admin)
 
 app.debug = DEBUG
 
+app.config['PROJECT_NAME']=PROJECT_NAME
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = DBURI
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
@@ -84,9 +85,12 @@ def maintenance():
     else:
         return redirect(url_for('root'))
 
+
+# for example
 @app.route('/')
 def root():
-    return render_template('root.html')
+    users = User.query.all()
+    return render_template('root_example.html', users=users)
 
 
 @app.template_filter('nl2br')

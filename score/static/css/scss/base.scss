@@ -7,6 +7,10 @@ html {
 }
 
 
+#pre-footer{
+    height:150px;
+}
+
 
 #footer {
   position: absolute;
@@ -15,7 +19,7 @@ html {
   color: $gray5;
   background-color: $gray2;
   /* Set the fixed height of the footer here */
-  height: 3em;
+  height: 70px;
   text-align: center;
   p {
     font-size: 80%;

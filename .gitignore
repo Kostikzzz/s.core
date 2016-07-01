@@ -1,5 +1,6 @@
 score/config.py
 score/static/photos
+score/social/static/images
 __pycache__
 score/__pycache__
 score/upload
