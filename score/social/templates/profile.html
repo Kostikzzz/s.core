@@ -37,7 +37,7 @@
 
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-9">
             <section id="userinfo">
                 <h1 id="nickname__title">{{u.nickname}}</h1>
                 <div class="divider"></div>
@@ -61,14 +61,16 @@
 
                 <div id="nickname__status"></div>
             </section>
+            <section>
+                <h2>Авторизация</h2>
+                {% if u.google_id %}
+                    Вы вошли с помощью Google
+                {% endif %}
+                <div class="divider"></div>
+                <a class="btn btn-large btn-warning" href="{{url_for('social.logout')}}"><i class="fa fa-sign-out" title="Выйти"></i>&nbsp;Выйти</a>
+            </section>
         </div>
 
-        <div class="col-lg-4">
-            <h2>Авторизация</h2>
-            {% if u.google_id %}
-                Вы вошли с помощью Google
-            {% endif %}
-        </div>
     </div>
 
 

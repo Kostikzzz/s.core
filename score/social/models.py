@@ -119,8 +119,7 @@ class User (UserMixin, db.Model):
             if user_info not in contacted:
                 contacted.append(user_info)
 
-
-        return contacted
+        return {"list":contacted, "length":len(contacted)}
 
     def get_avatar(self):
         image = self.image

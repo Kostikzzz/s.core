@@ -16,7 +16,7 @@
             {% for u in users %}
             <div class="user-block item-block" style="padding:5px">
                 <img class="img img-responsive" src="{{u.get_avatar()}}" style="float:left; width:80px; border-radius:5px; margin-right:15px;" />
-                <h3>{{u.nickname}}</h3>
+                <h3><a href="{{url_for('social.public_profile', uid=u.id)}}">{{u.nickname}}</a></h3>
                 <div class="clearfix"></div>
             </div>
             {% endfor %}

@@ -1,9 +1,9 @@
-/* div {
+/* 
+ div {
     outline-width: 1px;
     outline-style: solid;
     outline-color: red;
-}
- */
+} */
 /* line 11, scss/common.scss */
 .inactive {
   display: none;

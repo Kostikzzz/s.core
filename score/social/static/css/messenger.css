@@ -41,3 +41,18 @@ li.contact-list__item--selected {
 .msg__from-me .msg__bubble {
   background-color: #c8efb1;
 }
+
+/* line 44, scss/messenger.scss */
+#msg__textarea {
+  width: 100%;
+  resize: vertical;
+  padding: .5em;
+  border: 0.1em solid #ccc;
+  border-radius: 6px;
+}
+
+/* line 52, scss/messenger.scss */
+#msg__send-button {
+  width: 100%;
+  margin-top: 5px;
+}

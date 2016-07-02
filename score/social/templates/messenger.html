@@ -33,7 +33,8 @@
                     <div class="col-lg-3">
                         <h3 class="col__header">Пользователи</h3>
                         <ul id="messenger__contact-list">
-                            {% for c in u.get_contacted_users() %}
+                            {% set cu=u.get_contacted_users() %}
+                            {% for c in cu['list'] %}
                                 <li class="contact-list__item" data-uid="{{c.uid}}">{{c.name}}</li>
                             {% endfor %}
                         </ul>
@@ -42,20 +43,15 @@
                         <h3 class="col__header" id="chat__header"></h3>
 
                         <div id="chat">
-
-                            <!-- message -->
-                            <div class="row msg__to-me">
-                                <div class="col-lg-11 msg__bubble">message</div>
-                            </div>
-
-                            <!-- message -->
-                            <div class="row msg__from-me">
-                                <div class="col-lg-11 col-lg-offset-1 msg__bubble">message</div>
-                            </div>
+                            {% if cu['length']>0 %}
+                                Выберите пользователя для просмотра переписки
+                            {% else %}
+                                Чтобы начать переписку отправьте сообщение со страницы профиля нужного пользователя
+                            {% endif %}
                         </div>
-
-                        <textarea id="msg__textarea" style="border-radius:6px; border-color=#aaa;padding:10px"></textarea>
-                        <button id="msg__send-button">Send</button>
+                        <div class="divider"></div>
+                        <textarea id="msg__textarea" placeholder="Ваше сообщение"></textarea>
+                        <button id="msg__send-button" class="btn btn-large btn-default" disabled >Отправить</button>
 
                     </div>
 

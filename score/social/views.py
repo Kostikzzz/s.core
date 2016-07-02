@@ -1,4 +1,4 @@
-from flask import session, request, url_for, redirect, render_template, send_from_directory, flash
+from flask import session, request, url_for, redirect, render_template, send_from_directory, flash, abort
 from .models import User, PrivateMessage
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from . .db import db
@@ -253,6 +253,15 @@ def post_messenger():
         for m in pm:
             msgs.append({"text":m.text, "sender":m.user_from})
         return json.dumps({'status':'ok', 'messages':msgs})
+
+
+@social.route('/user/<uid>')
+def public_profile(uid):
+    u = User.query.get(uid)
+    if u:
+        return render_template('public_profile.html', u=u)
+    else:
+        abort(404)
 
 
 

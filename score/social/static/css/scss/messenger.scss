@@ -40,3 +40,16 @@ li.contact-list__item--selected{
         background-color: $light-green;
     }
 }
+
+#msg__textarea{
+    width:100%;
+    resize:vertical;
+    padding:.5em;
+    border: 0.1em solid #ccc;
+    border-radius: 6px;
+}
+
+#msg__send-button{
+    width:100%;
+    margin-top: 5px;
+}

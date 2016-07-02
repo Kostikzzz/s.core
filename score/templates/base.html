@@ -29,17 +29,15 @@
     <div id="navbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3" id="navbar__logo"><a href="{{url_for('root')}}"<span style="font-size:200%">{{config['PROJECT_NAME']}}</span></div>
+                <div class="col-lg-3" id="navbar__logo"><a href="{{url_for('root')}}"><span style="font-size:200%"> {{config['PROJECT_NAME']}}</span></a></div>
                 <div class="col-lg-6" id="navbar__middle"></div>
                 <div class="col-lg-3" id="navbar__user">
                     {% if current_user.is_authenticated %}
-                        <!-- Вы вошли как  -->
-                        <img id = "navbar__avatar" src="{{current_user.get_avatar()}}" class="img img-responsive avatar-small" />
-                        <a href="{{url_for('social.profile')}}">
-                            <strong><span id="nickname">{{current_user.nickname }}</span></strong>
-                        </a>
-                        &nbsp;
-                        <a href="{{url_for('social.logout')}}"><i class="fa fa-sign-out" title="Выйти"></i></a>
+                        <img id = "user__avatar" src="{{current_user.get_avatar()}}" class="img img-responsive avatar-small" />
+                        
+                            <div id="user__nickname">
+                                <a href="{{url_for('social.profile')}}">{{current_user.nickname }} </a>
+                            </div>
                     {% else %}
                         Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
                     {% endif %}
