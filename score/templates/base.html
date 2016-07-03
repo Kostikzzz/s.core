@@ -36,7 +36,7 @@
                         <img id = "user__avatar" src="{{current_user.get_avatar()}}" class="img img-responsive avatar-small" />
                         
                             <div id="user__nickname">
-                                <a href="{{url_for('social.profile')}}">{{current_user.nickname }} </a>
+                                <a id="user__nickname-link" href="{{url_for('social.profile')}}">{{current_user.nickname }} </a>
                             </div>
                     {% else %}
                         Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>

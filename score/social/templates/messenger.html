@@ -28,35 +28,38 @@
     <div class="row" id="profile_messenger">
         <h2 class="row__header">Личные сообщения</h2>
         <div class="col-lg-12">
-            <section>
+            
                 <div class="row">
                     <div class="col-lg-3">
-                        <h3 class="col__header">Пользователи</h3>
-                        <ul id="messenger__contact-list">
-                            {% set cu=u.get_contacted_users() %}
-                            {% for c in cu['list'] %}
-                                <li class="contact-list__item" data-uid="{{c.uid}}">{{c.name}}</li>
-                            {% endfor %}
-                        </ul>
+                        <section>
+                            <h3 class="col__header">Пользователи</h3>
+                            <ul id="messenger__contact-list">
+                                {% set cu=u.get_contacted_users() %}
+                                {% for c in cu['list'] %}
+                                    <li class="contact-list__item" data-uid="{{c.uid}}">{{c.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </section>
                     </div>
                     <div class="col-lg-9">
-                        <h3 class="col__header" id="chat__header"></h3>
-
-                        <div id="chat">
-                            {% if cu['length']>0 %}
-                                Выберите пользователя для просмотра переписки
-                            {% else %}
-                                Чтобы начать переписку отправьте сообщение со страницы профиля нужного пользователя
-                            {% endif %}
-                        </div>
-                        <div class="divider"></div>
-                        <textarea id="msg__textarea" placeholder="Ваше сообщение"></textarea>
-                        <button id="msg__send-button" class="btn btn-large btn-default" disabled >Отправить</button>
+                        <section>
+                            <h3 class="col__header" id="chat__header"></h3>
+                            <div id="chat">
+                                {% if cu['length']>0 %}
+                                    Выберите пользователя для просмотра переписки
+                                {% else %}
+                                    Чтобы начать переписку отправьте сообщение со страницы профиля нужного пользователя
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <textarea id="msg__textarea" placeholder="Ваше сообщение"></textarea>
+                            <button id="msg__send-button" class="btn btn-large btn-default" disabled >Отправить</button>
+                        </section>
 
                     </div>
 
                 </div>
-            </section>
+            
         </div>
     </div>
 

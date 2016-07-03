@@ -4,6 +4,7 @@ from flask import Flask, request, session, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
+
 from flask_wtf.csrf import CsrfProtect
 import json
 
@@ -11,11 +12,12 @@ from .cache import cache
 
 from .db import db
 
-from .config import DEBUG, SECRET_KEY, DBURI, MAINTENANCE, PROJECT_NAME
-
+from .config import DEBUG, SECRET_KEY, DBURI, MAINTENANCE, PROJECT_NAME, MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS, MAIL_USE_SSL, MAIL_USERNAME, MAIL_PASSWORD
 from .social import social, oauth
 from .social.models import User
 from .admin import admin
+
+# from .mailer import mail
 
 
 
@@ -35,9 +37,28 @@ app.config['SQLALCHEMY_POOL_RECYCLE'] = 60
 app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
 app.config['BOOTSTRAP_SERVE_LOCAL']=True
 app.config['CACHE_TYPE']='simple'
+# app.config['MAIL_SERVER']=MAIL_SERVER
+# app.config['MAIL_PASSWORD']=MAIL_PASSWORD
+# app.config['MAIL_PORT']=MAIL_PORT
+# app.config['MAIL_USE_SSL']=MAIL_USE_SSL
+# app.config['MAIL_USE_TLS']=MAIL_USE_TLS
+# app.config['MAIL_USERNAME']=MAIL_USERNAME
+app.config['EMAIL_HOST']= MAIL_SERVER
+app.config['EMAIL_PORT']= MAIL_PORT
+app.config['EMAIL_HOST_USER']= MAIL_USERNAME
+app.config['EMAIL_HOST_PASSWORD']= MAIL_PASSWORD
+app.config['EMAIL_USE_SSL']= MAIL_USE_SSL
+app.config['EMAIL_USE_TLS']= MAIL_USE_TLS
+
+
+
+
+#mail = Mail(app)
 
 
 cache.init_app(app)
+
+# mail.init_app(app)
 
 toolbar = DebugToolbarExtension(app)
 

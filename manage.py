@@ -1,12 +1,13 @@
 #manage.py
 
 from flask.ext.script import Manager
-
+from score import app
+from score.mailer import Mailer
 manager = Manager(app)
 
 @manager.command
-def test_command():
-    print ("test ok")
+def mail_test():
+    Mailer.welcome_mail()
 
 
 

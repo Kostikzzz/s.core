@@ -35,6 +35,7 @@ $(document).ready(function(){
 		getResults('/save-nick','json',{val: name}, function(res){
 			if (res.val){
 				$('#nickname__title').html(name);
+				$('#user__nickname-link').html(name);
 				$('#nickname__status').hide();
 			}
 		});
@@ -52,7 +53,7 @@ $(document).ready(function(){
 			$('#avatar__image').hide(300);
 			setTimeout(function(){
 				$('#avatar__image').attr('src', data.url);
-				$('#navbar__avatar').attr('src', data.url);
+				$('#user__avatar').attr('src', data.url);
 				$('#avatar__image').show(300);
 			},350);
 			
