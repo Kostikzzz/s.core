@@ -55,7 +55,8 @@
                 <label class="form-label" for="nickname__edit-input">E-mail:</label>
                 <div class="form-inline">
                   <div id ="email__group" class="form-group" >
-                    <input type="text" class="form-control"  id="email__edit-input" value="{{u.contact_email}}" placeholder="Add nickname"
+                    {% set es=u.get_email_status() %}
+                    <input type="text" class="form-control"  id="email__edit-input" value="{{es['email']}}" placeholder="Add nickname"
                       >
                   </div>
                   <button id="email__save-button" class="btn btn-default">Сохранить</button>

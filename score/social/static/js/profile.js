@@ -59,7 +59,10 @@ $(document).ready(function(){
 				} else {
 					$('#email__group').removeClass('has-error');
 					$('#email__group').addClass('has-success');
-					$('#email__status').hide();
+					$('#email__status').html('<span style="color:red">На указанный адрес отправлено письмо со ссылкой подтверждения</span>');
+					getResults('/verify-email', 'json', {email:val}, function(res){
+
+					});
 				}
 	});
 				

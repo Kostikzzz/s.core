@@ -15,6 +15,7 @@ from . .toolbox import get_hash
 
 from sqlalchemy.sql import or_, and_
 
+from . .mailer import Mailer
 
 
 
@@ -276,11 +277,30 @@ def public_profile(uid):
 
 # EMAIL VERIFICATION
 #=============================================================
-
-# @social.route('/verify-email', methods=['GET', 'POST'])
-# def verify_email():
-#     if request.method == 'POST' and current_user.is_authenticated:
-        
+@social.route('/verify-email', methods=['GET', 'POST'])
+def verify_email():
+    if request.method == 'POST' and current_user.is_authenticated:
+        email = request.json['email']
+        current_user.contact_email=email
+        db.session.add(current_user)
+        db.session.commit()
+        uid = current_user.id
+        regmail = current_user.register_email
+        hsh = get_hash(regmail+email)
+        Mailer.verify_mail(uid=uid, hash=hsh, email=email)
+        return json.dumps({'status':''})
+    else:
+        uid = request.args['uid']
+        hsh = request.args['code']
+        u = User.query.get(uid)
+        uhsh=get_hash(u.register_email+u.contact_email)
+        if uhsh==hsh:
+            u.contact_email_accepted=True
+            db.session.add(u)
+            db.session.commit()
+            return redirect(url_for('social.profile'))
+        else:
+            return render_template('error.html', error='Bad confirmation code')
 
 
 

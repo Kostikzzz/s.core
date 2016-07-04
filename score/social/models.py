@@ -99,7 +99,7 @@ class User (UserMixin, db.Model):
 
     def get_email_status(self):
         extra=''
-        if contact_email_accepted:
+        if self.contact_email_accepted:
             email = self.contact_email
             status = "ok"
             if self.contact_email == self.register_email:
