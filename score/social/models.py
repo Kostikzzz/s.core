@@ -39,13 +39,15 @@ class UsersRelationship(db.Model):
 class User (UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    register_email = db.Column(db.String(100), unique=True)
     contact_email = db.Column(db.String(100))
+    contact_email_accepted = db.Column(db.Boolean, default = False)
     g_username = db.Column(db.String(50))
     f_username = db.Column(db.String(50))
     vk_username = db.Column(db.String(50))
     nickname = db.Column(db.String(50))
     password_hash = db.Column(db.String(64))
-    email = db.Column(db.String(100), unique=True)
+    # email = db.Column(db.String(100), unique=True)
     google_id =db.Column(db.String(255), unique=True)
     facebook_id =db.Column(db.String(255), unique=True)
     vk_id =db.Column(db.String(255), unique=True)
@@ -75,7 +77,7 @@ class User (UserMixin, db.Model):
     def register_google_user(username, email, google_id):
         if username == '':
             username = email
-        user = User(g_username=username, nickname=username, email=email, contact_email=email, google_id=google_id)
+        user = User(g_username=username, nickname=username, register_email=email, contact_email=email, google_id=google_id, contact_email_accepted=True)
         db.session.add(user)
         db.session.commit()
         StrangersLog.write('google_sign_up')
@@ -85,7 +87,7 @@ class User (UserMixin, db.Model):
     def register_facebook_user(username, email, facebook_id):
         if username == '':
             username = email
-        user = User(f_username=username, nickname=username, email=email, contact_email=email, facebook_id=facebook_id)
+        user = User(f_username=username, nickname=username, register_email=email, contact_email=email, facebook_id=facebook_id, contact_email_accepted=True)
         db.session.add(user)
         db.session.commit()
         StrangersLog.write('fb_sign_up')
@@ -93,6 +95,23 @@ class User (UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {0}>'.format(self.nickname)
+
+
+    def get_email_status(self):
+        extra=''
+        if contact_email_accepted:
+            email = self.contact_email
+            status = "ok"
+            if self.contact_email == self.register_email:
+                extra = 'not changed'
+            else:
+                extra = 'changed'
+        else:
+            email = self.register_email
+            status = "not verified"
+            extra = self.contact_email
+        return {"email":email, "staus":status, "extra":extra}
+
 
     def is_admin(self):
         return (self.email in ADMIN_EMAILS)

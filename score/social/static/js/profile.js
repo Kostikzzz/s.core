@@ -1,3 +1,9 @@
+function validateEmail(email) {
+    /*var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;*/
+    var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    return re.test(email);
+}
+
 $(document).ready(function(){
 
 
@@ -40,6 +46,24 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+
+	$('#email__save-button').on('click', function(){
+				var val = $('#email__edit-input').val();
+
+				if (!validateEmail(val)){
+					$('#email__group').removeClass('has-success');
+					$('#email__group').addClass('has-error');
+					$('#email__status').html('<span style="color:red">Введите корректный адрес</span>');
+					$('#email__status').show();
+				} else {
+					$('#email__group').removeClass('has-error');
+					$('#email__group').addClass('has-success');
+					$('#email__status').hide();
+				}
+	});
+				
+
 
 	$('.dropzone').dmUploader({
 		url:'/avatar-upload',

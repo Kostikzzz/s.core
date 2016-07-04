@@ -19,8 +19,8 @@ from sqlalchemy.sql import or_, and_
 
 
 
-
-# GOOGLE OAUTH =====================================================================
+# GOOGLE OAUTH
+#=============================================================
 
 google = oauth.remote_app(
     'google',
@@ -76,7 +76,8 @@ def get_google_oauth_token():
     return session.get('google_token')
 
 
-# FACEBOOK OAUTH =====================================================================
+# FACEBOOK OAUTH
+#=============================================================
 
 facebook = oauth.remote_app('facebook',
     base_url='https://graph.facebook.com/',
@@ -127,7 +128,8 @@ def get_facebook_oauth_token():
     return session.get('facebook_token')
 
 
-# LOGIN-LOGOUT ==============================
+# LOGIN LOGOUT
+#=============================================================
 
 @social.route('/login')
 def login():
@@ -142,7 +144,8 @@ def logout():
     return redirect(url_for('root'))
 
 
-# PROFILE ==============================
+# USER PROFILE
+#=============================================================
 @social.route('/profile')
 @login_required
 def profile():
@@ -168,7 +171,8 @@ def save_nick():
     return json.dumps({"val":False})
 
 
-#UPLOAD 
+# AVATAR UPLOAD
+#=============================================================
 
 import os
 from werkzeug.utils import secure_filename
@@ -230,6 +234,9 @@ def avatar_upload():
 
 
 
+# PRIVATE MESSAGES
+#=============================================================
+
 @login_required
 @social.route('/private-messages', methods=['GET'])
 def messenger():
@@ -255,6 +262,8 @@ def post_messenger():
         return json.dumps({'status':'ok', 'messages':msgs})
 
 
+# PUBLIC PROFILE
+#=============================================================
 @social.route('/user/<uid>')
 def public_profile(uid):
     u = User.query.get(uid)
@@ -264,6 +273,14 @@ def public_profile(uid):
         abort(404)
 
 
+
+# EMAIL VERIFICATION
+#=============================================================
+
+# @social.route('/verify-email', methods=['GET', 'POST'])
+# def verify_email():
+#     if request.method == 'POST' and current_user.is_authenticated:
+        
 
 
 
