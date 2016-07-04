@@ -282,13 +282,18 @@ def verify_email():
     if request.method == 'POST' and current_user.is_authenticated:
         email = request.json['email']
         current_user.contact_email=email
+        current_user.contact_email_accepted=False
         db.session.add(current_user)
         db.session.commit()
         uid = current_user.id
         regmail = current_user.register_email
         hsh = get_hash(regmail+email)
-        Mailer.verify_mail(uid=uid, hash=hsh, email=email)
-        return json.dumps({'status':''})
+        status='ok'
+        try:
+            Mailer.verify_mail(uid=uid, hash=hsh, email=email)
+        except:
+            status='not ok'
+        return json.dumps({'status':status})
     else:
         uid = request.args['uid']
         hsh = request.args['code']

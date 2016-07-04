@@ -10,27 +10,31 @@ $(document).ready(function(){
 	$('#nickname__save-button').removeAttr('disabled');
 
 
-	$('#nickname__edit-input').on('keyup', function(){
-		if ($(this).val().length<30) {
-			getResults('/check-nick','json',{val: $(this).val()}, function(res){
-				if (res.val == 1){
-					$('#nickname__group').removeClass('has-success');
-					$('#nickname__group').addClass('has-error');
-					$('#nickname__save-button').attr('disabled','disabled');
-					$('#nickname__status').html('<span style="color:red">This nickname has already taken</span>');
-				} else if (res.val==0){
-					$('#nickname__group').removeClass('has-error');
-					$('#nickname__group').addClass('has-success');
-					$('#nickname__save-button').removeAttr('disabled');
-					$('#nickname__status').html('<span style="color:green">This nickname is available</span>');
-				}
-				$('#nickname__status').show();
+	$('#nickname__edit-input').on('keyup', function(e){
+		if (e.which!=13){
+			if ($(this).val().length<30) {
+				getResults('/check-nick','json',{val: $(this).val()}, function(res){
+					if (res.val == 1){
+						$('#nickname__group').removeClass('has-success');
+						$('#nickname__group').addClass('has-error');
+						$('#nickname__save-button').attr('disabled','disabled');
+						$('#nickname__status').html('<span style="color:red">This nickname has already taken</span>');
+					} else if (res.val==0){
+						$('#nickname__group').removeClass('has-error');
+						$('#nickname__group').addClass('has-success');
+						$('#nickname__save-button').removeAttr('disabled');
+						$('#nickname__status').html('<span style="color:green">This nickname is available</span>');
+					}
+					$('#nickname__status').show();
 
-			});	
-		}
-		else{
-			$('#nickname__status').html('<span style="color:red">This nickname is too long</span>');
-			$('#nickname__save-button').attr('disabled','disabled');
+				});	
+			}
+			else{
+				$('#nickname__status').html('<span style="color:red">This nickname is too long</span>');
+				$('#nickname__save-button').attr('disabled','disabled');
+			}
+		} else {
+			$('#nickname__save-button').trigger('click');
 		}
 		
 	});
@@ -47,6 +51,11 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#nickname__edit-input').on('keyup', function(e){
+		if (e.which==13){
+
+		} 
+	});
 
 	$('#email__save-button').on('click', function(){
 				var val = $('#email__edit-input').val();
