@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
     $('#private-message__show').on('click', function(){
-        $('#private-message__form').show(300);
+        if(!$(this).hasClass('disabled')){
+            $('#private-message__form').show(300);
+        }
     });
 
     $('#private-message__send-button').on('click', function(){
