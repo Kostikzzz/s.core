@@ -30,20 +30,32 @@
         <div class="col-lg-12">
             
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <section>
                             <h3 class="col__header">Пользователи</h3>
                             <ul id="messenger__contact-list">
                                 {% set cu=u.get_contacted_users() %}
                                 {% for c in cu['list'] %}
-                                    <li class="contact-list__item" data-uid="{{c.uid}}">{{c.name}}</li>
+                                    <li class="contact-list__item" data-uid="{{c.uid}}">
+                                        <img src="{{c.img}}" class="img img-responsive contact-avatar" />
+                                        {{c.name}}
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </section>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-8">
                         <section>
-                            <h3 class="col__header" id="chat__header"></h3>
+                            <div>
+                                <div id="chat__header"><h3 class="col__header" id="chat_header__text"></h3></div>
+                                <div id="chat__controls">
+                                    <button class="btn" id="chat__ban-button" title="Not set">
+                                        <i class="glyphicon glyphicon-ban-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="divider"></div>
                             <div id="chat">
                                 {% if cu['length']>0 %}
                                     Выберите пользователя для просмотра переписки

@@ -1,5 +1,5 @@
 from flask import session, request, url_for, redirect, render_template, send_from_directory, flash, abort
-from .models import User, PrivateMessage
+from .models import User, PrivateMessage, UsersRelationship
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from . .db import db
 from . .config import GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET
@@ -251,16 +251,24 @@ def post_messenger():
     query=request.json
 
     if query['cmd']=='sendMessage':
-        txt = query['text']
-        current_user.send_private_message(query['uid'], txt)
-        return json.dumps({'status':'ok'})
+        ur = UsersRelationship.query.filter(and_(UsersRelationship.user1==current_user.id, UsersRelationship.user2==query['uid'])).first()
+        if (not ur or ur.can_send_pm_to):
+            txt = query['text']
+            current_user.send_private_message(query['uid'], txt)
+            status='ok'
+        else:
+            status='disabled'
+        return json.dumps({'status':status})
 
     elif query['cmd']=='getMessages':
         pm = PrivateMessage.query.filter( or_(and_(PrivateMessage.user_from==current_user.id, PrivateMessage.user_to==query['uid']), and_(PrivateMessage.user_to==current_user.id, PrivateMessage.user_from==query['uid']) ) )
         msgs=[]
+        ur = UsersRelationship.query.filter(and_(UsersRelationship.user2==current_user.id, UsersRelationship.user1==query['uid'])).first()
+        ban = True
+        if not ur or ur.can_send_pm_to: ban = False
         for m in pm:
             msgs.append({"text":m.text, "sender":m.user_from})
-        return json.dumps({'status':'ok', 'messages':msgs})
+        return json.dumps({'status':'ok', 'messages':msgs, 'ban':ban})
 
 
 # PUBLIC PROFILE

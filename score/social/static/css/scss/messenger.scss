@@ -53,3 +53,29 @@ li.contact-list__item--selected{
     width:100%;
     margin-top: 5px;
 }
+
+.contact-avatar{
+    display: inline-block;
+    margin-right: 5px;
+    height: 40px;
+}
+
+#chat__header{
+    float: left;
+}
+
+#chat__controls{
+    float: right;
+}
+
+#chat__ban-button{
+    display: none;
+}
+
+.ban-disabled{
+    color:$gray4;
+}
+
+.ban-enabled{
+    color:$red;
+}

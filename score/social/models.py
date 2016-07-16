@@ -31,10 +31,10 @@ class UsersRelationship(db.Model):
     __tablename__ = 'users_relationships'
     id = db.Column(db.Integer, primary_key=True)
     user1 = db.Column(db.ForeignKey('users.id'))
-    user2 = db.Column(db.ForeignKey('users.id'))
-    are_friends = db.Column(db.Boolean, default=False)
+    is_friend_to = db.Column(db.Boolean, default=False)
     follows = db.Column(db.Boolean, default=False)
-    can_send_pm = db.Column(db.Boolean, default=True)
+    can_send_pm_to = db.Column(db.Boolean, default=True)
+    user2 = db.Column(db.ForeignKey('users.id'))
 
 class User (UserMixin, db.Model):
     __tablename__ = 'users'
@@ -128,13 +128,13 @@ class User (UserMixin, db.Model):
         #sent
         pms = PrivateMessage.query.filter(PrivateMessage.user_from==self.id)
         for m in pms:
-            user_info={"name":m.recipient.nickname, "uid":m.recipient.id}
+            user_info={"name":m.recipient.nickname, "uid":m.recipient.id, "img":m.recipient.get_avatar()}
             if user_info not in contacted:
                 contacted.append(user_info)
         #received
         pms = PrivateMessage.query.filter(PrivateMessage.user_to==self.id)
         for m in pms:
-            user_info={"name":m.sender.nickname, "uid":m.sender.id}
+            user_info={"name":m.sender.nickname, "uid":m.sender.id, "img":m.sender.get_avatar()}
             if user_info not in contacted:
                 contacted.append(user_info)
 

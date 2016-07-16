@@ -30,6 +30,9 @@ $(document).ready(function(){
                     $('#msg__textarea').val('');
                     $('#chat').append(renderMessage(currentUser, {text:txt, sender:currentUser}));
                 }
+                else if(res.status=='disabled'){
+                    alert('Вы не можете отправлять сообщения этому пользователю')
+                }
                 
             });
         }
@@ -41,7 +44,8 @@ $(document).ready(function(){
             selectedUser.removeClass('contact-list__item--selected');
         }
         selectedUser=$(this);
-        $('#chat__header').html('Ваш чат с пользователем '+$(this).html());
+        $('#chat_header__text').html(/*'Ваш чат с пользователем '*/$(this).html());
+
         $('#chat').html('');
         getResults('/post-messenger', 'json', {cmd:'getMessages', uid: $(this).attr('data-uid')}, function(res){
             var msgs = res.messages;
@@ -49,6 +53,20 @@ $(document).ready(function(){
                 $('#chat').append(renderMessage(currentUser,msgs[i]));
                 $('#msg__send-button').prop('disabled', false);
             }
+            // REWRITE! ->
+            if (res.ban){
+                $('#chat__ban-button').removeClass('ban-disabled');
+                $('#chat__ban-button').addClass('ban-enabled');
+                $('#chat__ban-button').attr('title', 'Разблокировать пользователя');
+            }
+            else{
+                $('#chat__ban-button').removeClass('ban-enabled');
+                $('#chat__ban-button').addClass('ban-disabled');
+                $('#chat__ban-button').attr('title', 'Заблокировать пользователя');
+            }
+            //<-
+            $('#chat__ban-button').show();
+           // alert(res.ban);
         });
     }); 
 
