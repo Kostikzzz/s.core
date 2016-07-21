@@ -72,6 +72,10 @@ li.contact-list__item--selected{
     display: none;
 }
 
+#chat__status{
+    display: none;
+}
+
 .ban-disabled{
     color:$gray4;
 }

@@ -17,6 +17,9 @@ function renderMessage(owner, m){
 $(document).ready(function(){
     var currentUser = $('meta[name=uid]').attr('content');
 
+    // set reload time from server
+    setTimeout(function(){location.reload()},1000*60*10);
+
     /*$('#chat').append(renderMessage('msg__to-me', {text:'Hello world!'}));*/
 
     var selectedUser=null;
@@ -39,6 +42,7 @@ $(document).ready(function(){
     });
 
     $('li.contact-list__item').on('click', function(){
+        $('#chat__status').hide();
         $(this).addClass('contact-list__item--selected');
         if(selectedUser){
             selectedUser.removeClass('contact-list__item--selected');
@@ -69,6 +73,16 @@ $(document).ready(function(){
            // alert(res.ban);
         });
     }); 
+
+
+    $('#chat__ban-button').on('click', function(){
+        if ($(this).hasClass('ban-enabled')){
+            $('#chat__status').html(
+                'Вы действительно хотите разблокировать этого пользователя?<br/><span class="plink">Да, <strong>разблокировать</strong>!</span>&nbsp;&nbsp;&nbsp;<span class="plink">Нет, <strong>оставить</strong> как есть</span>'
+                )
+            .show();
+        }
+    });
 
 
 

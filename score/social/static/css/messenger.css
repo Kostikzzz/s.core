@@ -80,11 +80,16 @@ li.contact-list__item--selected {
 }
 
 /* line 75, scss/messenger.scss */
+#chat__status {
+  display: none;
+}
+
+/* line 79, scss/messenger.scss */
 .ban-disabled {
   color: #c6c6c6;
 }
 
-/* line 79, scss/messenger.scss */
+/* line 83, scss/messenger.scss */
 .ban-enabled {
   color: #ff4e2b;
 }
