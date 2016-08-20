@@ -260,7 +260,8 @@ def post_messenger():
             status='disabled'
         return json.dumps({'status':status})
 
-    elif query['cmd']=='getMessages':
+    elif query['cmd']=='loadUserData':
+        u=User.query.get(query['uid'])
         pm = PrivateMessage.query.filter( or_(and_(PrivateMessage.user_from==current_user.id, PrivateMessage.user_to==query['uid']), and_(PrivateMessage.user_to==current_user.id, PrivateMessage.user_from==query['uid']) ) )
         msgs=[]
         ur = UsersRelationship.query.filter(and_(UsersRelationship.user2==current_user.id, UsersRelationship.user1==query['uid'])).first()
@@ -268,7 +269,7 @@ def post_messenger():
         if not ur or ur.can_send_pm_to: ban = False
         for m in pm:
             msgs.append({"text":m.text, "sender":m.user_from})
-        return json.dumps({'status':'ok', 'messages':msgs, 'ban':ban})
+        return json.dumps({'name':u.nickname, 'status':'ok', 'messages':msgs, 'ban':ban})
 
 
 # PUBLIC PROFILE

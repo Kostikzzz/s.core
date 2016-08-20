@@ -5,7 +5,7 @@ ul{
     padding: 0;
 }
 
-li.contact-list__item{
+li.v__contact-list__item{
     list-style: none;
     display:block;
     width:100%;
@@ -19,7 +19,7 @@ li.contact-list__item{
         cursor: pointer;
     }
 }
-li.contact-list__item--selected{
+li.v__contact-list__item--selected{
     background-color: $c-sec;
     color:white;
 }
@@ -60,19 +60,19 @@ li.contact-list__item--selected{
     height: 40px;
 }
 
-#chat__header{
+#v__chat-header__title{
     float: left;
 }
 
-#chat__controls{
+#v__chat-header__controls{
     float: right;
 }
 
-#chat__ban-button{
+#v__chat-header__ban-button{
     display: none;
 }
 
-#chat__status{
+#v__chat-header__status{
     display: none;
 }
 

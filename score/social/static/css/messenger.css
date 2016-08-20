@@ -4,7 +4,7 @@ ul {
 }
 
 /* line 8, scss/messenger.scss */
-li.contact-list__item {
+li.v__contact-list__item {
   list-style: none;
   display: block;
   width: 100%;
@@ -14,14 +14,14 @@ li.contact-list__item {
   padding: 5px;
 }
 /* line 16, scss/messenger.scss */
-li.contact-list__item:hover {
+li.v__contact-list__item:hover {
   background-color: #0088cc;
   color: white;
   cursor: pointer;
 }
 
 /* line 22, scss/messenger.scss */
-li.contact-list__item--selected {
+li.v__contact-list__item--selected {
   background-color: #ffc501;
   color: white;
 }
@@ -65,22 +65,22 @@ li.contact-list__item--selected {
 }
 
 /* line 63, scss/messenger.scss */
-#chat__header {
+#v__chat-header__title {
   float: left;
 }
 
 /* line 67, scss/messenger.scss */
-#chat__controls {
+#v__chat-header__controls {
   float: right;
 }
 
 /* line 71, scss/messenger.scss */
-#chat__ban-button {
+#v__chat-header__ban-button {
   display: none;
 }
 
 /* line 75, scss/messenger.scss */
-#chat__status {
+#v__chat-header__status {
   display: none;
 }
 

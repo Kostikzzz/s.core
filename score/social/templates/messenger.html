@@ -33,10 +33,11 @@
                     <div class="col-lg-4">
                         <section>
                             <h3 class="col__header">Пользователи</h3>
-                            <ul id="messenger__contact-list">
+
+                            <ul id="v__contact-list">
                                 {% set cu=u.get_contacted_users() %}
                                 {% for c in cu['list'] %}
-                                    <li class="contact-list__item" data-uid="{{c.uid}}">
+                                    <li class="v__contact-list__item" v-on:click="selectUser($event)" data-uid="{{c.uid}}">
                                         <img src="{{c.img}}" class="img img-responsive contact-avatar" />
                                         {{c.name}}
                                     </li>
@@ -47,23 +48,34 @@
                     <div class="col-lg-8">
                         <section>
                             <div>
-                                <div id="chat__header"><h3 class="col__header" id="chat_header__text"></h3></div>
-                                <div id="chat__controls">
-                                    <button class="btn" id="chat__ban-button" title="Not set">
-                                        <i class="glyphicon glyphicon-ban-circle"></i>
-                                    </button>
+
+                                <div id="v__chat-header">
+                                    <div id="v__chat-header__title">
+                                        <h3 class="col__header" id="v__chat-header__title-text" v-text="headerText">
+                                        </h3>
+                                    </div>
+                                    <div id="v__chat-header__controls">
+                                        <button class="btn" id="v__chat-header__ban-button" title="Not set">
+                                            <i class="glyphicon glyphicon-ban-circle"></i>
+                                        </button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div id="v__chat-header__status" class="alert alert-warning">
+                                    </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div id="chat__status" class="alert alert-warning">
-                                </div>
+
+
                             </div>
                             <div class="divider"></div>
-                            <div id="chat">
-                                {% if cu['length']>0 %}
-                                    Выберите пользователя для просмотра переписки
-                                {% else %}
-                                    Чтобы начать переписку отправьте сообщение со страницы профиля нужного пользователя
-                                {% endif %}
+                            <div id="v__chat">
+                                <div id="v__chat__placeholder">
+                                    {% if cu['length']>0 %}
+                                        Выберите пользователя для просмотра переписки
+                                    {% else %}
+                                        Чтобы начать переписку отправьте сообщение со страницы профиля нужного пользователя
+                                    {% endif %}
+                                </div>
+                                <div class="msg__bubble" v-for="msg in messages" v-text="msg.text"></div>
                             </div>
                             <div class="divider"></div>
                             <textarea id="msg__textarea" placeholder="Ваше сообщение"></textarea>
@@ -96,6 +108,7 @@
 
 {% block scripts %}
     {{ super() }}
+    <script src ="{{ url_for('static', filename="lib/vue.js") }}" type="text/javascript"></script>
     <script src ="{{ url_for('static', filename="js/common.js") }}" type="text/javascript"></script>
     <script src ="{{ url_for('social.static', filename="js/messenger.js") }}" type="text/javascript"></script>
 {% endblock %}
