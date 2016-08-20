@@ -58,6 +58,7 @@ class User (UserMixin, db.Model):
     private_messages_from = db.relationship('PrivateMessage', backref='sender', lazy='dynamic', foreign_keys='PrivateMessage.user_from')
     private_messages_to = db.relationship('PrivateMessage', backref='recipient', lazy='dynamic', foreign_keys='PrivateMessage.user_to')
     users_relationships = db.relationship('UsersRelationship', backref='user', lazy='dynamic', foreign_keys='UsersRelationship.user1')
+    notifications = db.relationship('Notification', backref='recipient', lazy='dynamic', foreign_keys='Notification.user_to')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -145,6 +146,22 @@ class User (UserMixin, db.Model):
         if not image:
             image='avatar_placeholder.png'
         return (url_for('social.static', filename='images/avatars/'+image))
+
+
+class Notification(db.model):
+
+    __tablename__ = 'notifications'
+    id = db.Column(db.Integer, primary_key=True)
+    user_from = db.Column(db.Integer, default=0)
+    emitter_type = db.Column(db.String(20))
+    user_to = db.Column(db.Integer, db.ForeignKey('users.id'))
+    timestamp = db.Column(db.DateTime)
+    unread = db.Column(db.Boolean, default=True)
+    message = db.Column(db.Text)
+
+    
+
+
 
 
 

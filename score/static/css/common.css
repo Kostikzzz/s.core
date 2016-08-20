@@ -39,10 +39,11 @@ a, .plink {
 
 /* line 42, scss/common.scss */
 .plink {
+  text-decoration: underline;
   cursor: pointer;
 }
 
-/* line 47, scss/common.scss */
+/* line 48, scss/common.scss */
 .error {
   color: red;
   outline-color: red;
@@ -50,53 +51,53 @@ a, .plink {
   outline-width: 2px;
 }
 
-/* line 54, scss/common.scss */
+/* line 55, scss/common.scss */
 .debug {
   outline-width: 1px;
   outline-color: red;
   outline-style: solid;
 }
 
-/* line 61, scss/common.scss */
+/* line 62, scss/common.scss */
 .waiting {
   cursor: pointer;
   color: #c6c6c6;
 }
-/* line 64, scss/common.scss */
+/* line 65, scss/common.scss */
 .waiting:hover {
   color: #27c257;
 }
 
-/* line 69, scss/common.scss */
+/* line 70, scss/common.scss */
 .label-as-badge {
   border-radius: 1em;
 }
 
-/* line 73, scss/common.scss */
+/* line 74, scss/common.scss */
 .label-brand {
   background-color: #0088cc;
   color: white;
 }
 
-/* line 79, scss/common.scss */
+/* line 80, scss/common.scss */
 .hint {
   font-size: 120%;
   color: #878787;
   padding: .5em;
 }
 
-/* line 85, scss/common.scss */
+/* line 86, scss/common.scss */
 .hint-icon {
   font-size: 200%;
 }
 
-/* line 89, scss/common.scss */
+/* line 90, scss/common.scss */
 .nano-timeline img {
   max-width: 12px;
   margin-left: -1px;
 }
 
-/* line 96, scss/common.scss */
+/* line 97, scss/common.scss */
 .center-label {
   font-size: 300%;
   text-align: center;
@@ -104,12 +105,12 @@ a, .plink {
   margin-top: 100px;
 }
 
-/* line 101, scss/common.scss */
+/* line 102, scss/common.scss */
 .center-sub-label {
   text-align: center;
 }
 
-/* line 105, scss/common.scss */
+/* line 106, scss/common.scss */
 section {
   border-width: 1px;
   border-radius: 6px;
@@ -119,7 +120,7 @@ section {
   background-color: white;
 }
 
-/* line 114, scss/common.scss */
+/* line 115, scss/common.scss */
 .divider {
   width: 100%;
   height: 1px;
@@ -128,23 +129,23 @@ section {
   margin-bottom: 15px;
 }
 
-/* line 122, scss/common.scss */
+/* line 123, scss/common.scss */
 .form-inline {
   margin-bottom: 15px;
 }
 
-/* line 126, scss/common.scss */
+/* line 127, scss/common.scss */
 .form-label {
   font-weight: 600;
   margin-bottom: 0;
 }
 
-/* line 132, scss/common.scss */
+/* line 133, scss/common.scss */
 .avatar-big {
   border-radius: 6px;
 }
 
-/* line 136, scss/common.scss */
+/* line 137, scss/common.scss */
 .avatar-small {
   border-radius: 3px;
   width: 40px;
@@ -152,20 +153,20 @@ section {
   float: left;
 }
 
-/* line 143, scss/common.scss */
+/* line 144, scss/common.scss */
 .inline-menu__item {
   display: inline-block;
   padding: 5px;
   margin-right: 10px;
   border-radius: 3px;
 }
-/* line 148, scss/common.scss */
+/* line 149, scss/common.scss */
 .inline-menu__item:hover {
   background-color: #c6c6c6;
   color: white;
 }
 
-/* line 154, scss/common.scss */
+/* line 155, scss/common.scss */
 .inline-menu__item--selected {
   background-color: #0088cc;
   color: white;

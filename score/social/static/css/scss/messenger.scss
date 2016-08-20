@@ -24,20 +24,27 @@ li.v__contact-list__item--selected{
     color:white;
 }
 
+.msg {
+    margin-bottom: 5px;
+}
+
 .msg__bubble{
     border-radius: 6px;
-    padding:10px;
+    padding:25px;
 }
 
 .msg__to-me{
     .msg__bubble{
         background-color: $light-orange;
+        width:80%;
     }
 }
 
 .msg__from-me{
     .msg__bubble{
         background-color: $light-green;
+        width:80%;
+        margin-left: 20%;
     }
 }
 
@@ -69,17 +76,18 @@ li.v__contact-list__item--selected{
 }
 
 #v__chat-header__ban-button{
-    display: none;
-}
+} 
 
 #v__chat-header__status{
     display: none;
 }
 
-.ban-disabled{
-    color:$gray4;
-}
+ .ban-disabled{
+    color:white;
+    background-color: $green;
+} 
 
 .ban-enabled{
-    color:$red;
+    color:black;
+    background-color: $red;
 }

@@ -27,22 +27,30 @@ li.v__contact-list__item--selected {
 }
 
 /* line 27, scss/messenger.scss */
+.msg {
+  margin-bottom: 5px;
+}
+
+/* line 31, scss/messenger.scss */
 .msg__bubble {
   border-radius: 6px;
-  padding: 10px;
+  padding: 25px;
 }
 
-/* line 33, scss/messenger.scss */
+/* line 37, scss/messenger.scss */
 .msg__to-me .msg__bubble {
   background-color: #ffeaa5;
-}
-
-/* line 39, scss/messenger.scss */
-.msg__from-me .msg__bubble {
-  background-color: #c8efb1;
+  width: 80%;
 }
 
 /* line 44, scss/messenger.scss */
+.msg__from-me .msg__bubble {
+  background-color: #c8efb1;
+  width: 80%;
+  margin-left: 20%;
+}
+
+/* line 51, scss/messenger.scss */
 #msg__textarea {
   width: 100%;
   resize: vertical;
@@ -51,45 +59,42 @@ li.v__contact-list__item--selected {
   border-radius: 6px;
 }
 
-/* line 52, scss/messenger.scss */
+/* line 59, scss/messenger.scss */
 #msg__send-button {
   width: 100%;
   margin-top: 5px;
 }
 
-/* line 57, scss/messenger.scss */
+/* line 64, scss/messenger.scss */
 .contact-avatar {
   display: inline-block;
   margin-right: 5px;
   height: 40px;
 }
 
-/* line 63, scss/messenger.scss */
+/* line 70, scss/messenger.scss */
 #v__chat-header__title {
   float: left;
 }
 
-/* line 67, scss/messenger.scss */
+/* line 74, scss/messenger.scss */
 #v__chat-header__controls {
   float: right;
 }
 
-/* line 71, scss/messenger.scss */
-#v__chat-header__ban-button {
-  display: none;
-}
-
-/* line 75, scss/messenger.scss */
+/* line 81, scss/messenger.scss */
 #v__chat-header__status {
   display: none;
 }
 
-/* line 79, scss/messenger.scss */
+/* line 85, scss/messenger.scss */
 .ban-disabled {
-  color: #c6c6c6;
+  color: white;
+  background-color: #55d426;
 }
 
-/* line 83, scss/messenger.scss */
+/* line 90, scss/messenger.scss */
 .ban-enabled {
-  color: #ff4e2b;
+  color: black;
+  background-color: #ff4e2b;
 }
