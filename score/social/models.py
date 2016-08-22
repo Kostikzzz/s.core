@@ -148,18 +148,55 @@ class User (UserMixin, db.Model):
         return (url_for('social.static', filename='images/avatars/'+image))
 
 
-class Notification(db.model):
+class Notification(db.Model):
 
     __tablename__ = 'notifications'
     id = db.Column(db.Integer, primary_key=True)
+    ntype = db.Column(db.String(20))
     user_from = db.Column(db.Integer, default=0)
     emitter_type = db.Column(db.String(20))
     user_to = db.Column(db.Integer, db.ForeignKey('users.id'))
     timestamp = db.Column(db.DateTime)
     unread = db.Column(db.Boolean, default=True)
     message = db.Column(db.Text)
+    data = db.Column(db.Text)
 
-    
+    def __init__(self, ntype, user_to, message, **kwargs):
+        self.user_to = user_to
+        self.message = message
+
+        if 'emitter_type' in kwargs:
+            self.emitter_type = kwargs['emitter_type']
+        else:
+            self.emitter_type=''
+
+        if 'data' in kwargs:
+            self.data = kwargs['data']
+        else:
+            self.data=''
+
+        if 'user_from' in kwargs:
+            self.user_from = kwargs['user_from']
+        else:
+            self.user_from = 0
+
+        self.unread = True
+        self.timestamp = datetime.utcnow()
+
+
+    def add(user_to, ntype, message, **kwargs):
+        n = Notification(user_to, message, **kwargs)
+        db.session.add(n)
+        db.session.commit()
+
+    def get (recipient):
+        return Notification.query.filter_by(user_to=recipient.id)
+
+    def count (recipient):
+        return Notification.query.filter_by(user_to=recipient.id).count()
+
+
+        
 
 
 

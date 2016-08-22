@@ -33,11 +33,20 @@
                 <div class="col-lg-6" id="navbar__middle"></div>
                 <div class="col-lg-3" id="navbar__user">
                     {% if current_user.is_authenticated %}
+
                         <img id = "user__avatar" src="{{current_user.get_avatar()}}" class="img img-responsive avatar-small" />
                         
                             <div id="user__nickname">
                                 <a id="user__nickname-link" href="{{url_for('social.profile')}}">{{current_user.nickname }} </a>
                             </div>
+
+                            {% if notifications %}
+                            <span class="glyphicon glyphicon-bell" style="font-size:140%; color:red"></span>
+                            <span class="label-as-badge" style="background-color: red; color: white; display: inline-block ">
+                                
+                                {{notifications}} ddfe
+                            </span>
+                        {% endif %}
                     {% else %}
                         Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
                     {% endif %}

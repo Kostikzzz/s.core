@@ -54,7 +54,7 @@ class StrangersLog(db.Model):
             l.note = note
 
         l.action = action
-        l.timestamp = datetime.now()
+        l.timestamp = datetime.utcnow()
         db.session.add(l)
         db.session.commit()
 

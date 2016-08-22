@@ -14,7 +14,7 @@ from .db import db
 
 from .config import DEBUG, SECRET_KEY, DBURI, MAINTENANCE, PROJECT_NAME, MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS, MAIL_USE_SSL, MAIL_USERNAME, MAIL_PASSWORD
 from .social import social, oauth
-from .social.models import User
+from .social.models import User, Notification
 from .admin import admin
 
 # from .mailer import mail
@@ -111,7 +111,12 @@ def maintenance():
 @app.route('/')
 def root():
     users = User.query.all()
-    return render_template('root_example.html', users=users)
+    notifications = Notification.count(current_user)
+    return render_template(
+                            'root_example.html',
+                            users=users,
+                            notifications=notifications
+                            )
 
 
 @app.template_filter('nl2br')

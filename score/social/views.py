@@ -1,5 +1,5 @@
 from flask import session, request, url_for, redirect, render_template, flash, abort
-from .models import User, PrivateMessage, UsersRelationship
+from .models import User, PrivateMessage, UsersRelationship, Notification
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from . .db import db
 from . .config import GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET
@@ -267,6 +267,7 @@ def post_messenger():
             txt = query['text']
             current_user.send_private_message(query['uid'], txt)
             status = 'ok'
+            Notification.add(query['uid'],'Вы получили новое сообщение от пользователя '+current_user.nickname)
         else:
             print('disabled')
             status = 'disabled'
