@@ -1,3 +1,5 @@
+{% from 'macros.html' import inline_menu %}
+
 {% extends "base.html" %}
 
 {% block title %}Ваш профиль: {{u.nickname}}{% endblock %}
@@ -16,16 +18,8 @@
 
 {% block page_content %}
 <div class="container">
-
-    <div class="row" id="profile__menu">
-        <div class="col-lg-12">
-            <a class="inline-menu__item" href="{{url_for('social.user_events')}}">События</a>
-            <a class="inline-menu__item" href="{{url_for('social.profile')}}">Профиль</a>
-            <a class="inline-menu__item inline-menu__item--selected" href="#">Личные сообщения</a>
-        </div>
-    </div>
-
     
+    {{inline_menu('messenger')}}
 
     <div class="row" id="profile_messenger">
         <h2 class="row__header">Личные сообщения</h2>
@@ -130,7 +124,7 @@
 
 {% block scripts %}
     {{ super() }}
-    <script src ="{{ url_for('static', filename="lib/vue.js") }}" type="text/javascript"></script>
+    
     <script src ="{{ url_for('static', filename="js/common.js") }}" type="text/javascript"></script>
     <script src ="{{ url_for('social.static', filename="js/messenger.js") }}" type="text/javascript"></script>
 {% endblock %}

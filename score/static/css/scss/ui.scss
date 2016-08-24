@@ -14,13 +14,24 @@
     }
 }
 
+.item-block__body{
+    padding: 10px 15px 10px 15px;
+}
+
 .cmd-bar {
     display: none;
     padding: 5px;
-    background-color: #ffc300;
+    background-color: $c-sec;
     color: black;
     text-align: right;
     border-radius: 0 0 6px 6px;
+    a {
+        display: inline-block;
+        margin-left: 15px;
+        color:white;
+        //background-color: white;
+        border-radius: 3px;
+    }
 }
 
 .cmd-bar-static {
@@ -39,3 +50,17 @@
     margin-top: 3px;
 }
 
+
+.has-cmd-bar:hover .cmd-bar{
+    display: block;
+}
+
+
+.badge {
+    background-color: red;
+    color: white;
+    font-weight: bolder;
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 12px;
+}

@@ -48,18 +48,18 @@ body {
 }
 
 #navbar__user{
-  text-align: right;
+  td{
+    padding-left:10px;
+  }
 }
 
 /* #user__image{
     display: inline-block;
 } */
+
 #user__nickname{
-    padding-left: 10px;
-    //padding-top: 6px;
-    font-size: 18px;
-    display: inline-block;
-    float:right;
+  font-size: 18px;
+  float:right;
 }
 
 #user__nots{
@@ -67,7 +67,11 @@ body {
   padding-top: 5px;
 }
 
-
+.user__alert{
+  a{
+    text-decoration: none;
+  }
+}
 
 
 @media screen and (max-width: 996px){
@@ -78,3 +82,5 @@ body {
 
 
 /* ================================= END NAVBAR =============================*/
+
+

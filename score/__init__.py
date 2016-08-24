@@ -113,13 +113,17 @@ def root():
     users = User.query.all()
     if current_user.is_authenticated:
         notifications = Notification.count(current_user)
+        return render_template(
+                                'root_example.html',
+                                users=users,
+                                notifications_count=notifications['other'],
+                                messages_count=notifications['messages']
+                                )
     else:
-        notifications = None
-    return render_template(
-                            'root_example.html',
-                            users=users,
-                            notifications=notifications
-                            )
+        return render_template(
+                                'root_example.html',
+                                users=users
+                                )
 
 
 @app.template_filter('nl2br')

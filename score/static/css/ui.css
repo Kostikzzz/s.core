@@ -15,16 +15,28 @@
 }
 
 /* line 17, scss/ui.scss */
+.item-block__body {
+  padding: 10px 15px 10px 15px;
+}
+
+/* line 21, scss/ui.scss */
 .cmd-bar {
   display: none;
   padding: 5px;
-  background-color: #ffc300;
+  background-color: #ffc501;
   color: black;
   text-align: right;
   border-radius: 0 0 6px 6px;
 }
+/* line 28, scss/ui.scss */
+.cmd-bar a {
+  display: inline-block;
+  margin-left: 15px;
+  color: white;
+  border-radius: 3px;
+}
 
-/* line 26, scss/ui.scss */
+/* line 37, scss/ui.scss */
 .cmd-bar-static {
   padding: 5px;
   color: black;
@@ -32,11 +44,26 @@
   border-radius: 0 0 6px 6px;
 }
 
-/* line 34, scss/ui.scss */
+/* line 45, scss/ui.scss */
 .confirm-delete {
   background-color: red;
   color: white;
   padding: 3px 10px;
   border-radius: 4px;
   margin-top: 3px;
+}
+
+/* line 54, scss/ui.scss */
+.has-cmd-bar:hover .cmd-bar {
+  display: block;
+}
+
+/* line 59, scss/ui.scss */
+.badge {
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 12px;
 }

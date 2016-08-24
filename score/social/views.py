@@ -157,7 +157,10 @@ def logout():
 @login_required
 def profile():
     u = current_user
-    return render_template('profile.html', u=u)
+    notifications = Notification.count(current_user)
+    return render_template('profile.html', u=u, 
+                            notifications_count=notifications['other'],
+                            messages_count=notifications['messages'])
 
 
 @social.route('/check-nick', methods=['POST'])
@@ -241,6 +244,18 @@ def avatar_upload():
         return json.dumps({"url": current_user.get_avatar()})
 
 
+# USER EVENTS
+#=============================================================
+@social.route('/user/events')
+def user_events():
+    nots = Notification.get(current_user).order_by(desc(Notification.id))
+    notifications = Notification.count(current_user)
+    return render_template('user_events.html', nots=nots, 
+                            notifications_count=notifications['other'],
+                            messages_count=notifications['messages'])
+
+    
+
 # PRIVATE MESSAGES
 #=============================================================
 @login_required
@@ -248,7 +263,10 @@ def avatar_upload():
 def messenger():
     sel = request.args.get('user')
     u = current_user
-    return render_template('messenger.html', u=u, sel=sel)
+    notifications = Notification.count(current_user)
+    return render_template('messenger.html', u=u, sel=sel, 
+                            notifications_count=notifications['other'],
+                            messages_count=notifications['messages'])
 
 
 @login_required
@@ -345,19 +363,19 @@ def post_messenger():
 #=============================================================
 @social.route('/user/<uid>')
 def public_profile(uid):
+
     u = User.query.get(uid)
+    if current_user.is_authenticated:
+        notifications = Notification.count(current_user)
     if u:
-        return render_template('public_profile.html', u=u)
+        return render_template('public_profile.html', u=u,
+                            notifications_count=notifications['other'],
+                            messages_count=notifications['messages'])
     else:
         abort(404)
 
 
-# USER EVENTS
-#=============================================================
-@social.route('/user/events')
-def user_events():
-    nots = Notification.get(current_user).order_by(desc(Notification.id))
-    return render_template('user_events.html', nots=nots)
+
 
 
 

@@ -1,3 +1,5 @@
+{% from 'macros.html' import inline_menu %}
+
 {% extends "base.html" %}
 
 {% block title %}События{% endblock %}
@@ -11,30 +13,46 @@
 {% block page_content %}
 <div class="container">
 
-    <div class="row" id="profile__menu">
-        <div class="col-lg-12">
-            <a class="inline-menu__item inline-menu__item--selected" href="#">События</a>
-            <a class="inline-menu__item " href="{{url_for('social.profile')}}">Профиль</a>
-            <a class="inline-menu__item" href="{{url_for('social.messenger')}}">Личные сообщения</a>
-        </div>
-    </div>
+    {{inline_menu('events')}}
 
     <div class="row" id ="profile__main">
       <div class="col-lg-6 col-lg-offset-3">
+
         {% for n in nots %}
-          <div class="notification item-block">
-            {{n.message}}
+          <div class="notification item-block has-cmd-bar">
+
+
             {% if n.ntype=='PM' %}
+            <div class="item-block__body">
+              {{n.message}}
               <div class="divider"></div>
               <div class="event__pm-text">
                 "{{n.data}}"
               </div>
-              <a href="{{url_for('social.messenger')}}?user={{n.user_from}}">Перейти к сообщениям </a>
-              <a href="{{url_for('social.public_profile', uid=n.user_from)}}">Профиль пользователя</a>
+            </div>
 
+            <div class="cmd-bar">
+              <a href="{{url_for('social.messenger')}}?user={{n.user_from}}">
+                  <span class="glyphicon glyphicon-envelope"></span>
+                  Перейти к сообщениям 
+              </a>
+                <a 
+                href="{{url_for('social.public_profile', uid=n.user_from)}}">
+                <span class="glyphicon glyphicon-user"></span>
+                Профиль пользователя
+              </a>
+            </div>
+            {% else %}
+              <div class="item-block__body">
+              {{n.message}}
+            </div>
             {% endif %}
+
+
           </div>
         {% endfor %}
+
+
       </div>
     </div>
 

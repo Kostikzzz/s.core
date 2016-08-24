@@ -1,3 +1,5 @@
+{% from 'macros.html' import inline_menu %}
+
 {% extends "base.html" %}
 
 {% block title %}Ваш профиль: {{u.nickname}}{% endblock %}
@@ -11,13 +13,7 @@
 {% block page_content %}
 <div class="container">
 
-    <div class="row" id="profile__menu">
-        <div class="col-lg-12">
-            <a class="inline-menu__item" href="{{url_for('social.user_events')}}">События</a>
-            <a class="inline-menu__item inline-menu__item--selected" href="#">Профиль</a>
-            <a class="inline-menu__item" href="{{url_for('social.messenger')}}">Личные сообщения</a>
-        </div>
-    </div>
+    {{inline_menu('profile')}}
 
     <div class="row" id ="profile__main">
         <h2 class="row__header">Профиль пользователя</h2>

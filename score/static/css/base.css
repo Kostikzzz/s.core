@@ -47,19 +47,17 @@ body {
   height: 60px;
 }
 
-/* line 50, scss/base.scss */
-#navbar__user {
-  text-align: right;
+/* line 51, scss/base.scss */
+#navbar__user td {
+  padding-left: 10px;
 }
 
 /* #user__image{
     display: inline-block;
 } */
-/* line 57, scss/base.scss */
+/* line 60, scss/base.scss */
 #user__nickname {
-  padding-left: 10px;
   font-size: 18px;
-  display: inline-block;
   float: right;
 }
 
@@ -67,6 +65,11 @@ body {
 #user__nots {
   float: right;
   padding-top: 5px;
+}
+
+/* line 71, scss/base.scss */
+.user__alert a {
+  text-decoration: none;
 }
 
 /* ================================= END NAVBAR =============================*/
