@@ -30,15 +30,15 @@
     <div id="navbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3" id="navbar__logo">
+                <div class="col-lg-3 col-md-3 col-sm-5 col-xs-6" id="navbar__logo">
                     <a href="{{url_for('root')}}">
                         <span style="font-size:200%">
                             {{config['PROJECT_NAME']}}
                         </span>
                     </a>
                 </div>
-                <div class="col-lg-5" id="navbar__middle"></div>
-                <div class="col-lg-4" id="navbar__user">
+                <div class="col-lg-5 col-md-5 col-sm-1" id="navbar__middle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="navbar__user">
                     {% if current_user.is_authenticated %}
 
             

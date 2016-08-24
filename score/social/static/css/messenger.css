@@ -57,7 +57,7 @@ li.v__contact-list__item--selected {
 /* line 54, scss/messenger.scss */
 .msg__prefix {
   font-style: italic;
-  font-size: 80%;
+  font-size: 70%;
   color: #c6c6c6;
   width: 100%;
 }

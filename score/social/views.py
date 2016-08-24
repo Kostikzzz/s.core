@@ -246,8 +246,9 @@ def avatar_upload():
 @login_required
 @social.route('/private-messages', methods=['GET'])
 def messenger():
+    sel = request.args.get('user')
     u = current_user
-    return render_template('messenger.html', u=u)
+    return render_template('messenger.html', u=u, sel=sel)
 
 
 @login_required

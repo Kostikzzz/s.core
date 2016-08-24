@@ -29,6 +29,8 @@
               <div class="event__pm-text">
                 "{{n.data}}"
               </div>
+              <a href="{{url_for('social.messenger')}}?user={{n.user_from}}">Перейти к сообщениям </a>
+              <a href="{{url_for('social.public_profile', uid=n.user_from)}}">Профиль пользователя</a>
 
             {% endif %}
           </div>

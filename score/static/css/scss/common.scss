@@ -149,6 +149,10 @@ section{
         background-color: $gray4;
         color: white;
     }
+    @media screen and (max-width: 486px){
+        display: block;
+        width: 100%;
+    }
 }
 
 .inline-menu__item--selected{

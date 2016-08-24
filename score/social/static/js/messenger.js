@@ -73,6 +73,16 @@ var messenger = new Vue({
             getResults('/post-messenger', 'json', {cmd:'getContacts'}, function(res){
                 if (res.status=='ok'){
                     self.contactList = res.list;
+                    var selUID = $('meta[name=seluid]').attr('content');
+                    if (selUID){
+                        selUID = parseInt(selUID, 10);
+                        for (var i=0; i<self.contactList.length; i++){
+                            if (self.contactList[i].uid == selUID){
+                                self.selectContact(i);
+                                break;
+                            }
+                        }
+                    }
                 }
                 else {
 

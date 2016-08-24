@@ -164,8 +164,15 @@ section {
   background-color: #c6c6c6;
   color: white;
 }
+@media screen and (max-width: 486px) {
+  /* line 143, scss/common.scss */
+  .inline-menu__item {
+    display: block;
+    width: 100%;
+  }
+}
 
-/* line 154, scss/common.scss */
+/* line 158, scss/common.scss */
 .inline-menu__item--selected {
   background-color: #0088cc;
   color: white;
