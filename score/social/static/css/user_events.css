@@ -1,0 +1,10 @@
+/* line 1, scss/user_events.scss */
+.notification {
+  padding: 15px;
+}
+
+/* line 5, scss/user_events.scss */
+.event__pm-text {
+  padding-left: 20px;
+  font-style: italic;
+}

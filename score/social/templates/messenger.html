@@ -88,7 +88,7 @@
                                     v-bind:class="{'msg__to-me':selectedUser.uid==msg.sender, 'msg__from-me':selectedUser.uid !=msg.sender, }"
                                     v-for="msg in messages" 
                                     >
-
+                                    <div class="msg__prefix" v-text="msg.ago"></div>
                                      <div class="msg__bubble" v-text="msg.text"></div>
 
                                 </div>

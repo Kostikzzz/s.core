@@ -161,7 +161,7 @@ class Notification(db.Model):
     message = db.Column(db.Text)
     data = db.Column(db.Text)
 
-    def __init__(self, ntype, user_to, message, **kwargs):
+    def __init__(self, user_to, ntype, message, **kwargs):
         self.user_to = user_to
         self.message = message
 
@@ -180,6 +180,7 @@ class Notification(db.Model):
         else:
             self.user_from = 0
 
+        self.ntype = ntype
         self.unread = True
         self.timestamp = datetime.utcnow()
 

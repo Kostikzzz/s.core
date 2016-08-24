@@ -30,7 +30,7 @@ li.v__contact-list__item--selected{
 
 .msg__bubble{
     border-radius: 6px;
-    padding:25px;
+    padding:15px;
 }
 
 .msg__to-me{
@@ -46,6 +46,16 @@ li.v__contact-list__item--selected{
         width:80%;
         margin-left: 20%;
     }
+    .msg__prefix{
+        text-align: right;
+    }
+}
+
+.msg__prefix{
+    font-style: italic;
+    font-size: 80%;
+    color:$gray4;
+    width:100%;
 }
 
 #msg__textarea{

@@ -20,9 +20,18 @@
     </div>
 
     <div class="row" id ="profile__main">
-      <div class="col-lg-6">
+      <div class="col-lg-6 col-lg-offset-3">
         {% for n in nots %}
-          <div>{{n.message}}</div>
+          <div class="notification item-block">
+            {{n.message}}
+            {% if n.ntype=='PM' %}
+              <div class="divider"></div>
+              <div class="event__pm-text">
+                "{{n.data}}"
+              </div>
+
+            {% endif %}
+          </div>
         {% endfor %}
       </div>
     </div>

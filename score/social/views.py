@@ -11,7 +11,7 @@ from . import social, oauth
 from . .path import ROOT_DIR, UPLOAD_DIR
 
 from PIL import Image
-from . .toolbox import get_hash
+from . .toolbox import get_hash, how_long_ago
 
 from sqlalchemy.sql import or_, and_
 
@@ -269,7 +269,14 @@ def post_messenger():
             txt = query['text']
             current_user.send_private_message(query['uid'], txt)
             status = 'ok'
-            Notification.add(query['uid'],'PM','Вы получили новое сообщение от пользователя '+current_user.nickname)
+            Notification.add(
+                                query['uid'],
+                                'PM',
+                                'Вы получили новое сообщение от пользователя '
+                                +current_user.nickname, 
+                                user_from=current_user.id,
+                                data=txt
+                            )
         else:
             print('disabled')
             status = 'disabled'
@@ -305,7 +312,7 @@ def post_messenger():
             isBanned = False
 
         for m in pm:
-            msgs.append({"text": m.text, "sender": m.user_from})
+            msgs.append({"text": m.text, "sender": m.user_from, "ago":how_long_ago(m.timestamp)})
         return json.dumps({'name': u.nickname, 'status': 'ok', 'messages': msgs, 'isBanned': isBanned})
 
     elif query['cmd'] == 'getContacts':
