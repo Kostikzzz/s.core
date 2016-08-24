@@ -48,16 +48,25 @@ body {
 }
 
 /* line 50, scss/base.scss */
-#user__image {
-  display: inline-block;
+#navbar__user {
+  text-align: right;
 }
 
-/* line 53, scss/base.scss */
+/* #user__image{
+    display: inline-block;
+} */
+/* line 57, scss/base.scss */
 #user__nickname {
   padding-left: 10px;
-  padding-top: 6px;
   font-size: 18px;
   display: inline-block;
+  float: right;
+}
+
+/* line 65, scss/base.scss */
+#user__nots {
+  float: right;
+  padding-top: 5px;
 }
 
 /* ================================= END NAVBAR =============================*/

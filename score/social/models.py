@@ -185,7 +185,7 @@ class Notification(db.Model):
 
 
     def add(user_to, ntype, message, **kwargs):
-        n = Notification(user_to, message, **kwargs)
+        n = Notification(user_to, ntype, message, **kwargs)
         db.session.add(n)
         db.session.commit()
 

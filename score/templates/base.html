@@ -16,9 +16,10 @@
 
 {% block styles %}
 {{ super() }}
-    <!-- <link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic' rel='stylesheet' type='text/css'> -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600&subset=latin,cyrillic'
+            rel='stylesheet' type='text/css'>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/common.css') }}">
 
@@ -29,26 +30,44 @@
     <div id="navbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3" id="navbar__logo"><a href="{{url_for('root')}}"><span style="font-size:200%"> {{config['PROJECT_NAME']}}</span></a></div>
-                <div class="col-lg-6" id="navbar__middle"></div>
-                <div class="col-lg-3" id="navbar__user">
+                <div class="col-lg-3" id="navbar__logo">
+                    <a href="{{url_for('root')}}">
+                        <span style="font-size:200%">
+                            {{config['PROJECT_NAME']}}
+                        </span>
+                    </a>
+                </div>
+                <div class="col-lg-5" id="navbar__middle"></div>
+                <div class="col-lg-4" id="navbar__user">
                     {% if current_user.is_authenticated %}
 
-                        <img id = "user__avatar" src="{{current_user.get_avatar()}}" class="img img-responsive avatar-small" />
-                        
-                            <div id="user__nickname">
-                                <a id="user__nickname-link" href="{{url_for('social.profile')}}">{{current_user.nickname }} </a>
-                            </div>
+            
+                        <div id="user__nickname">
+                                <img style="float:left" 
+                                    src="{{current_user.get_avatar()}}" 
+                                    class="img img-responsive avatar-small" />
+                                <a id="user__nickname-link" 
+                                    href="{{url_for('social.profile')}}">
+                                    {{current_user.nickname }}
+                                </a>
+                        </div>
 
-                            {% if notifications %}
-                            <span class="glyphicon glyphicon-bell" style="font-size:140%; color:red"></span>
-                            <span class="label-as-badge" style="background-color: red; color: white; display: inline-block ">
-                                
-                                {{notifications}} ddfe
-                            </span>
+                        {% if notifications %}
+                        <div id="user__nots">
+                            <a href="{{url_for('social.user_events')}}">
+                                <span class="glyphicon glyphicon-bell" 
+                                    style="font-size:140%; color:red">
+                                </span>
+                                <span>
+                                    {{notifications}}
+                                </span>
+                            </a>
+                        </div>
                         {% endif %}
                     {% else %}
-                        Войдите с <a href="{{url_for('social.g_login')}}">Google</a> или <a href="{{url_for('social.f_login')}}">Facebook</a>
+                        Войдите с 
+                        <a href="{{url_for('social.g_login')}}">Google</a>
+                         или <a href="{{url_for('social.f_login')}}">Facebook</a>
                     {% endif %}
                 </div>
             </div>
@@ -71,7 +90,8 @@
 
 {% block scripts %}
     {{ super() }}
-    <script src ="{{ url_for('static', filename="js/common.js") }}" type="text/javascript"></script>
+    <script src ="{{ url_for('static', filename="js/common.js") }}"
+            type="text/javascript"></script>
     {% if not debug_mode %}
         {% include 'metrica_counter.html' %}
     {% endif %}

@@ -47,14 +47,24 @@ body {
     height:60px;
 }
 
-#user__image{
-    display: inline-block;
+#navbar__user{
+  text-align: right;
 }
+
+/* #user__image{
+    display: inline-block;
+} */
 #user__nickname{
     padding-left: 10px;
-    padding-top: 6px;
+    //padding-top: 6px;
     font-size: 18px;
     display: inline-block;
+    float:right;
+}
+
+#user__nots{
+  float:right;
+  padding-top: 5px;
 }
 
 

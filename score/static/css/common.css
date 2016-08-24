@@ -150,23 +150,22 @@ section {
   border-radius: 3px;
   width: 40px;
   height: 40px;
-  float: left;
 }
 
-/* line 144, scss/common.scss */
+/* line 143, scss/common.scss */
 .inline-menu__item {
   display: inline-block;
   padding: 5px;
   margin-right: 10px;
   border-radius: 3px;
 }
-/* line 149, scss/common.scss */
+/* line 148, scss/common.scss */
 .inline-menu__item:hover {
   background-color: #c6c6c6;
   color: white;
 }
 
-/* line 155, scss/common.scss */
+/* line 154, scss/common.scss */
 .inline-menu__item--selected {
   background-color: #0088cc;
   color: white;

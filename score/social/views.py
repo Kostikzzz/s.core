@@ -17,6 +17,8 @@ from sqlalchemy.sql import or_, and_
 
 from . .mailer import Mailer
 
+from sqlalchemy import desc
+
 
 # GOOGLE OAUTH
 #=============================================================
@@ -267,7 +269,7 @@ def post_messenger():
             txt = query['text']
             current_user.send_private_message(query['uid'], txt)
             status = 'ok'
-            Notification.add(query['uid'],'Вы получили новое сообщение от пользователя '+current_user.nickname)
+            Notification.add(query['uid'],'PM','Вы получили новое сообщение от пользователя '+current_user.nickname)
         else:
             print('disabled')
             status = 'disabled'
@@ -340,6 +342,15 @@ def public_profile(uid):
         return render_template('public_profile.html', u=u)
     else:
         abort(404)
+
+
+# USER EVENTS
+#=============================================================
+@social.route('/user/events')
+def user_events():
+    nots = Notification.get(current_user).order_by(desc(Notification.id))
+    return render_template('user_events.html', nots=nots)
+
 
 
 # EMAIL VERIFICATION

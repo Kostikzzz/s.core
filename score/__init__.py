@@ -111,7 +111,10 @@ def maintenance():
 @app.route('/')
 def root():
     users = User.query.all()
-    notifications = Notification.count(current_user)
+    if current_user.is_authenticated:
+        notifications = Notification.count(current_user)
+    else:
+        notifications = None
     return render_template(
                             'root_example.html',
                             users=users,
