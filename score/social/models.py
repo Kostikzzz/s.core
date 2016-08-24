@@ -207,11 +207,14 @@ class Notification(db.Model):
                 res['other']+=1
         return res
 
-
+    def release(mode, **kwargs):
+        if mode == 'conversation':
+            Notification.query.filter(
+                            Notification.user_from == kwargs["user_from"],
+                            Notification.user_to == kwargs["user_to"]
+                            ).delete()
+            db.session.commit()
         
-
-
-
 
 
 

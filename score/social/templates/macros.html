@@ -14,7 +14,7 @@
                 {% if page=='messenger' %}
                 inline-menu__item--selected
                 {% endif %}" 
-            href="{{url_for('social.messenger')}}">Личные сообщения <span class="badge serverMsgCount"></span></a>
+            href="{{url_for('social.messenger')}}">Личные сообщения <span class="serverMsgIndicator"><span class="badge serverMsgCount"></span></span></a>
         </div>
     </div>
 {% endmacro %}

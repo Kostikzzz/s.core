@@ -57,6 +57,20 @@ var messenger = new Vue({
             });
         },
 
+        releaseNotifications: function(){
+            var self = this;
+            getResults('post-messenger', 'json', {
+                cmd:'releaseNotifications',
+                user_from: this.selectedUser.uid,
+                }, function(res){
+                    if (res.status='ok'){
+                        self.contactList[self.selectedUserIndex].unread = 0;
+                        serverHasMessages=res.unread;
+                        refreshIndicators();
+                    }
+                });
+        },
+
         selectContact: function(i){
             var self = this;
             console.log(JSON.stringify(this.contactList[i]));
@@ -66,7 +80,7 @@ var messenger = new Vue({
             this.headerText = 'Ваш чат с пользователем '+this.selectedUser.name;
             this.showAllMessages=false;
             this.getUserData(this.selectedUser.uid, function(){
-                
+                self.releaseNotifications();
             });
         },
 
@@ -113,10 +127,12 @@ var messenger = new Vue({
 
     },
 
+
     ready:function(){
         this.currentUser = parseInt($('meta[name=uid]').attr('content'), 10);
         setTimeout(function(){location.reload();},1000*60*10);
         this.loadContactList();
+        $('#messenger').on('eNotificationsUpdated', this.loadContactList);
     }
 
 });

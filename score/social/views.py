@@ -360,6 +360,15 @@ def post_messenger():
         db.session.commit()
         return json.dumps({'status': 'ok', 'banValue': ur.can_send_pm_to})
 
+    elif query['cmd'] == 'releaseNotifications':
+        Notification.release(
+                            'conversation',
+                            user_from=query['user_from'],
+                            user_to=current_user.id
+                            )
+        unread = Notification.count(current_user)['messages']
+        return json.dumps({'status': 'ok', 'unread': unread})
+
 
 # PUBLIC PROFILE
 #=============================================================
@@ -375,6 +384,20 @@ def public_profile(uid):
                             messages_count=notifications['messages'])
     else:
         abort(404)
+
+
+# NOTIFIER
+#=============================================================
+@login_required
+@social.route('/notifier', methods=['POST'])
+def notifier():
+    q=request.json
+    if q['cmd'] == 'checkNotifications':
+        notifications = Notification.count(current_user)
+        return json.dumps({'messages': notifications['messages'],
+                            'notifications': notifications['other'],
+                            'status':'ok'})
+
 
 
 
