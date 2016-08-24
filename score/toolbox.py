@@ -68,7 +68,7 @@ def how_long_ago(old_date):
 
     td = datetime.utcnow() - old_date
     s = "%d %s назад"
-    
+
     if td.days >= 365:
         t = round(td.days/365)
         return s % (t, russian_plurals('год',t))
@@ -79,7 +79,7 @@ def how_long_ago(old_date):
 
     elif td.days <=30 and td.days >6:
         t =round(td.days/7)
-        return s % (t, russian_plurals('неделя',t))
+        return s % (t, russian_plurals('неделя',t, ago=True))
 
     elif td.days <7 and td.days >0:
         t =round(td.days/7)
@@ -91,7 +91,7 @@ def how_long_ago(old_date):
 
     elif td.days==0 and td.seconds<3600 and td.seconds>59:
         t =round(td.seconds/60)
-        return s % (t, russian_plurals('минута',t))
+        return s % (t, russian_plurals('минута',t, ago=True))
 
     elif td.days==0 and td.seconds<60 and td.seconds:
         return 'Только что'

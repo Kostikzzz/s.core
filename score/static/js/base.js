@@ -1,15 +1,5 @@
-/*
-var navbarNotifier = new Vue({
-    el:'#navbar',
-    data: {
-        hasMessages: 0
-    },
-    ready: function(){
-        this.hasMessages = serverHasMessages;
-    }
-});*/
 
-$(document).ready(function(){
+function refreshIndicators(){
     $('.serverMsgIndicator').hide();
     if (serverHasMessages){
         $('.serverMsgCount').html(serverHasMessages);
@@ -20,5 +10,9 @@ $(document).ready(function(){
     if (serverHasNotifications){
         $('.serverNotsCount').html(serverHasNotifications);
         $('.serverNotsIndicator').show();
-    }
+    }    
+}
+
+$(document).ready(function(){
+    refreshIndicators();
 });

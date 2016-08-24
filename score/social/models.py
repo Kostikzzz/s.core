@@ -196,7 +196,7 @@ class Notification(db.Model):
     def count (recipient, **kwargs):
         res={"total": 0, "messages": 0, "other":0}
         if 'sender' in kwargs:
-            nots = Notification.query.filter_by(user_to=recipient.id, user_from=sender)
+            nots = Notification.query.filter_by(user_to=recipient.id, user_from=kwargs['sender'])
         else:
             nots = Notification.query.filter_by(user_to=recipient.id)
         for n in nots:

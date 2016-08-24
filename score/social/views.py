@@ -254,7 +254,7 @@ def user_events():
                             notifications_count=notifications['other'],
                             messages_count=notifications['messages'])
 
-    
+
 
 # PRIVATE MESSAGES
 #=============================================================
@@ -336,6 +336,8 @@ def post_messenger():
 
     elif query['cmd'] == 'getContacts':
         cl = current_user.get_contacted_users()
+        for c in cl['list']:
+            c['unread']=Notification.count(current_user, sender=c['uid'])['messages']
         cl['status'] = 'ok'
         return json.dumps(cl)
 

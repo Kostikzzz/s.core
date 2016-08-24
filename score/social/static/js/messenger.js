@@ -46,7 +46,9 @@ var messenger = new Vue({
             var self = this;
             getResults('/post-messenger', 'json', {text: this.messageArea, cmd:'sendMessage', uid: this.selectedUser.uid}, function(res){
                 if (res.status=='ok'){
-                    self.getUserData(self.selectedUser.uid, function(){});
+                    self.getUserData(self.selectedUser.uid, function(){
+                        self.messageArea='';
+                    });
                 }
                 else if(res.status=='disabled'){
                     alert('Вы не можете отправлять сообщения этому пользователю');

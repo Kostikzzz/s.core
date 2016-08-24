@@ -38,6 +38,10 @@
                                     v-bind:class="{'v__contact-list__item--selected': selectedUserIndex==$index}">
                                         <img v-bind:src="c.img" class="img img-responsive contact-avatar" />
                                         <span v-text="c.name"></span>
+                                        <span v-if="c.unread" 
+                                            v-text="c.unread"
+                                            class="badge">
+                                        </span>
                                     </li>
         
                             </ul>
