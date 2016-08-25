@@ -45,7 +45,7 @@
                     <div id="user__nickname">
                         <table><tr>
 
-                        {% if notifications_count %}
+                        
                         <td class="user__alert serverNotsIndicator">
                             <a href="{{url_for('social.user_events')}}" style="color:red">
                                 <span class="glyphicon glyphicon-bell" 
@@ -55,9 +55,9 @@
                                 </span>
                             </a>
                         </td>
-                        {% endif %}
 
-                        {% if messages_count %}
+
+
                         <td class="user__alert serverMsgIndicator">
                             <a href="{{url_for('social.messenger')}}" style="color:red">
                                 <span class="glyphicon glyphicon-envelope" 
@@ -68,7 +68,7 @@
                                 </span>
                             </a>
                         </td>
-                        {% endif %}
+                        
                         
                         <td>
                                 <img style="float:left" 
