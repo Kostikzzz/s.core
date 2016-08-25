@@ -20,6 +20,11 @@ from . .mailer import Mailer
 from sqlalchemy import desc
 
 
+def welcome_procedure():
+    Notification.add(current_user.id, 'personal', 'Добро пожаловать в органы, сынок! (Пример приветственного сообщения) Параллельно должно прийти письмо на почту')
+    Mailer.welcome_mail(current_user.contact_email)
+
+
 # GOOGLE OAUTH
 #=============================================================
 google = oauth.remote_app(
@@ -46,6 +51,7 @@ def g_login():
 
 @social.route('/google-login/authorized')
 def g_authorized():
+    just_registered = False
     resp = google.authorized_response()
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
@@ -59,9 +65,10 @@ def g_authorized():
     # check for user
     user = User.query.filter_by(google_id=me.data['id']).first()
     if user is None:
-        user = User.query.filter_by(email=me.data['email']).first()
+        user = User.query.filter_by(register_email=me.data['email']).first()
         if user is None:
             user = User.register_google_user(me.data['name'], me.data['email'], me.data['id'])
+            just_registered = True
         else:
             user.google_id = me.data['id']
             user.g_username = me.data['name']
@@ -71,6 +78,7 @@ def g_authorized():
     db.session.add(user)
     db.session.commit()
     login_user(user)
+    welcome_procedure()
     return redirect(url_for('root'))
 
 
@@ -102,6 +110,7 @@ def f_login():
 
 @social.route('/facebook-login/authorized')
 def f_authorized():
+    just_registered = False
     resp = facebook.authorized_response()
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
@@ -114,9 +123,10 @@ def f_authorized():
     # check for user
     user = User.query.filter_by(facebook_id=me.data['id']).first()
     if user is None:
-        user = User.query.filter_by(email=me.data['email']).first()
+        user = User.query.filter_by(register_email=me.data['email']).first()
         if user is None:
             user = User.register_facebook_user(me.data['name'], me.data['email'], me.data['id'])
+            just_registered = True
         else:
             user.facebook_id = me.data['id']
             user.f_username = me.data['name']
@@ -126,6 +136,7 @@ def f_authorized():
     db.session.add(user)
     db.session.commit()
     login_user(user)
+    welcome_procedure()
     return redirect(url_for('root'))
 
 
@@ -246,13 +257,21 @@ def avatar_upload():
 
 # USER EVENTS
 #=============================================================
-@social.route('/user/events')
+@login_required
+@social.route('/user/events', methods=['GET', 'POST'])
 def user_events():
-    nots = Notification.get(current_user).order_by(desc(Notification.id))
-    notifications = Notification.count(current_user)
-    return render_template('user_events.html', nots=nots, 
-                            notifications_count=notifications['other'],
-                            messages_count=notifications['messages'])
+    if request.method == 'GET':
+        nots = Notification.get(current_user).order_by(desc(Notification.id))
+        notifications = Notification.count(current_user)
+        return render_template('user_events.html', nots=nots,
+                                notifications_count=notifications['other'],
+                                messages_count=notifications['messages'])
+
+    elif request.method == 'POST':
+        q = request.json
+        if q['cmd']=='releaseNotifications':
+            Notification.release('events', user_to=current_user.id)
+            return (json.dumps({'status':'ok'}))
 
 
 

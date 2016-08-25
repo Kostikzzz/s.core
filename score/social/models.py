@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . .config import ADMIN_EMAILS
 from datetime import datetime
 
+from sqlalchemy.sql import or_
+
 # import os
 # from . .path import ROOT_DIR, UPLOAD_FOLDER, AVATAR_FOLDER
 from . .logger import StrangersLog
@@ -147,28 +149,36 @@ class User (UserMixin, db.Model):
             image='avatar_placeholder.png'
         return (url_for('social.static', filename='images/avatars/'+image))
 
-
-class Notification(db.Model):
-
-    __tablename__ = 'notifications'
+class NotificationMixin():
     id = db.Column(db.Integer, primary_key=True)
     ntype = db.Column(db.String(20))
     user_from = db.Column(db.Integer, default=0)
-    emitter_type = db.Column(db.String(20))
-    user_to = db.Column(db.Integer, db.ForeignKey('users.id'))
+    #emitter_type = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime)
-    unread = db.Column(db.Boolean, default=True)
+    #unread = db.Column(db.Boolean, default=True)
     message = db.Column(db.Text)
     data = db.Column(db.Text)
+
+
+class NotificationHistory(db.Model, NotificationMixin):
+    __tablename__ = 'notification_history'
+    user_to = db.Column(db.Integer)
+    archived = db.Column(db.DateTime)
+
+
+class Notification(db.Model, NotificationMixin):
+
+    __tablename__ = 'notifications'
+    user_to = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __init__(self, user_to, ntype, message, **kwargs):
         self.user_to = user_to
         self.message = message
 
-        if 'emitter_type' in kwargs:
-            self.emitter_type = kwargs['emitter_type']
-        else:
-            self.emitter_type=''
+        # if 'emitter_type' in kwargs:
+        #     self.emitter_type = kwargs['emitter_type']
+        # else:
+        #     self.emitter_type=''
 
         if 'data' in kwargs:
             self.data = kwargs['data']
@@ -181,7 +191,7 @@ class Notification(db.Model):
             self.user_from = 0
 
         self.ntype = ntype
-        self.unread = True
+        # self.unread = True
         self.timestamp = datetime.utcnow()
 
 
@@ -214,7 +224,30 @@ class Notification(db.Model):
                             Notification.user_to == kwargs["user_to"]
                             ).delete()
             db.session.commit()
-        
+        elif mode == 'events':
+            nots = Notification.query.filter(
+                            Notification.user_to == kwargs["user_to"],
+                            Notification.ntype != 'PM'
+                            )
+            for n in nots:
+                h = NotificationHistory()
+                h.user_from = n.user_from
+                h.user_to = n.user_to
+                h.ntype = n.ntype
+                h.timestamp = n.timestamp
+                h.message = n.message
+                h.data = n.data
+
+                h.archived = datetime.utcnow()
+
+                db.session.add(h)
+
+            nots.delete()
+
+            db.session.commit()
+
+
+
 
 
 
