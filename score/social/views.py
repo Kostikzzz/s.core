@@ -1,5 +1,5 @@
 from flask import session, request, url_for, redirect, render_template, flash, abort
-from .models import User, PrivateMessage, UsersRelationship, Notification
+from .models import User, PrivateMessage, UsersRelationship, Notification, NotificationHistory
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from . .db import db
 from . .config import GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET
@@ -262,8 +262,9 @@ def avatar_upload():
 def user_events():
     if request.method == 'GET':
         nots = Notification.get(current_user).order_by(desc(Notification.id))
+        nots_history = NotificationHistory.query.filter_by(user_to=current_user.id).order_by(desc(NotificationHistory.id))
         notifications = Notification.count(current_user)
-        return render_template('user_events.html', nots=nots,
+        return render_template('user_events.html', nots=nots, nots_history=nots_history,
                                 notifications_count=notifications['other'],
                                 messages_count=notifications['messages'])
 

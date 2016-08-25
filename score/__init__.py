@@ -50,7 +50,7 @@ app.config['EMAIL_HOST_PASSWORD']= MAIL_PASSWORD
 app.config['EMAIL_USE_SSL']= MAIL_USE_SSL
 app.config['EMAIL_USE_TLS']= MAIL_USE_TLS
 
-app.config['WTF_CSRF_TIME_LIMIT'] = 3600
+app.config['WTF_CSRF_TIME_LIMIT'] = 36000
 
 
 #mail = Mail(app)

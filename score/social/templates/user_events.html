@@ -19,7 +19,7 @@
       <div class="col-lg-6 col-lg-offset-3">
 
         {% for n in nots %}
-          <div class="notification item-block has-cmd-bar">
+          <div class=" item-block notification notification-new has-cmd-bar">
 
 
             {% if n.ntype=='PM' %}
@@ -45,6 +45,14 @@
             {% endif %}
 
 
+          </div>
+        {% endfor %}
+
+        {% for h in nots_history %}
+          <div class="item-block notification notification-old has-cmd-bar">
+            <div class="item-block__body">
+              {{h.message}}
+            </div>
           </div>
         {% endfor %}
 
