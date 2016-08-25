@@ -5,9 +5,11 @@ function refreshIndicators(){
     console.log('refreshing');
     
     if (serverHasMessages){
+        console.log('showing');
         $('.serverMsgCount').html(serverHasMessages);
         $('.serverMsgIndicator').show();
     } else {
+        console.log('hiding');
         $('.serverMsgIndicator').hide();
     }
 
