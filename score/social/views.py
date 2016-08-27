@@ -78,7 +78,8 @@ def g_authorized():
     db.session.add(user)
     db.session.commit()
     login_user(user)
-    welcome_procedure()
+    if just_registered:
+        welcome_procedure()
     return redirect(url_for('root'))
 
 
@@ -136,7 +137,8 @@ def f_authorized():
     db.session.add(user)
     db.session.commit()
     login_user(user)
-    welcome_procedure()
+    if just_registered:
+        welcome_procedure()
     return redirect(url_for('root'))
 
 
@@ -169,7 +171,7 @@ def logout():
 def profile():
     u = current_user
     notifications = Notification.count(current_user)
-    return render_template('profile.html', u=u, 
+    return render_template('profile.html', u=u,
                             notifications_count=notifications['other'],
                             messages_count=notifications['messages'])
 
@@ -284,7 +286,7 @@ def messenger():
     sel = request.args.get('user')
     u = current_user
     notifications = Notification.count(current_user)
-    return render_template('messenger.html', u=u, sel=sel, 
+    return render_template('messenger.html', u=u, sel=sel,
                             notifications_count=notifications['other'],
                             messages_count=notifications['messages'])
 
@@ -312,7 +314,7 @@ def post_messenger():
                                 query['uid'],
                                 'PM',
                                 'Вы получили новое сообщение от пользователя '
-                                +current_user.nickname, 
+                                +current_user.nickname,
                                 user_from=current_user.id,
                                 data=txt
                             )
@@ -398,6 +400,8 @@ def public_profile(uid):
     u = User.query.get(uid)
     if current_user.is_authenticated:
         notifications = Notification.count(current_user)
+    else:
+        notifications = {'other': 0, 'messages':0}
     if u:
         return render_template('public_profile.html', u=u,
                             notifications_count=notifications['other'],
